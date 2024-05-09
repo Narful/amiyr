@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.NotifSuspenduController">
+   <top>
+      <HBox alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="600.0" style="-fx-background-color: #003049;" BorderPane.alignment="CENTER">
+         <children>
+            <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" onMouseClicked="#closeNotif" size="1.5em">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <FontAwesomeIcon fill="#003049" glyphName="EXCLAMATION_CIRCLE" size="5em" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </FontAwesomeIcon>
+   </center>
+   <bottom>
+      <Label text="Votre compte est suspendu pour l'instant. " textFill="#616060" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="50.0" />
+         </BorderPane.margin>
+      </Label>
+   </bottom>
+</BorderPane>

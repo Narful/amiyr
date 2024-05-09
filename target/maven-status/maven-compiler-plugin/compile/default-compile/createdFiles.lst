@@ -1,0 +1,11 @@
+com\example\Client.class
+module-info.class
+com\example\DatabaseConnection.class
+com\example\App.class
+com\example\NotifSuspenduController.class
+com\example\SigninController.class
+com\example\SignupController.class
+com\example\Utilisateur$1.class
+com\example\Admin.class
+com\example\Cuisinier.class
+com\example\Utilisateur.class
