@@ -21,6 +21,9 @@ public class SigninController {
     private HBox errorBox;
 
     @FXML
+    private HBox errorBox1;
+
+    @FXML
     private Button ToSignup;
 
     public void initialize() {
@@ -50,6 +53,7 @@ public class SigninController {
         });
 
         errorBox.setVisible(false); // Set visibility to false when the controller is initialized
+        errorBox1.setVisible(false); // Set visibility to false when the controller is initialized
     }
 
     @FXML
@@ -65,14 +69,20 @@ public class SigninController {
 
     @FXML
     void onclickSignin(ActionEvent event) {
+        initialize();
         String userEmail = email.getText();
         String userPwd = pwd.getText();
+        if (userEmail.isEmpty() || userPwd.isEmpty()) {
+            errorBox1.setVisible(true);
+            return;
+        }
         boolean isUserFound = Utilisateur.seConnecter(userEmail, userPwd);
         if (isUserFound) {
             if (Utilisateur.etat.equals("suspendu")) {
                 // Create an instance of the controller
                 NotifSuspenduController controller = new NotifSuspenduController();
                 controller.showNotification();
+                return;
             } else {
                 System.out.println("Login succeeded");
             }

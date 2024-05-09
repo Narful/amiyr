@@ -59,26 +59,47 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
                 </PasswordField>
-            <HBox fx:id="errorBox" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="500.0" spacing="5.0">
+            <Pane prefHeight="31.0" prefWidth="424.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox fx:id="errorBox" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="500.0" spacing="5.0">
+                     <children>
+                        <FontAwesomeIcon fill="#d11e1e" glyphName="EXCLAMATION_CIRCLE">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </FontAwesomeIcon>
+                        <Label text="Email ou mot de passe incorrect." textFill="#d11e1e">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="errorBox1" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="500.0" spacing="5.0">
+                     <children>
+                        <FontAwesomeIcon fill="#d11e1e" glyphName="EXCLAMATION_CIRCLE">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </FontAwesomeIcon>
+                        <Label text="Veuillez remplir les deux champs." textFill="#d11e1e">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
                <VBox.margin>
                   <Insets left="80.0" right="80.0" top="-15.0" />
                </VBox.margin>
-               <children>
-                  <FontAwesomeIcon fill="#d11e1e" glyphName="EXCLAMATION_CIRCLE">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </FontAwesomeIcon>
-                  <Label text="Email ou mot de passe incorrect." textFill="#d11e1e">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
+            </Pane>
                 <Button id="btn_connect" mnemonicParsing="false" onAction="#onclickSignin" prefHeight="41.0" prefWidth="355.0" style="-fx-background-color: #780000; -fx-border-color: #780000;" text="Se connecter" textFill="WHITE">
                     <VBox.margin>
                         <Insets left="80.0" right="80.0" top="-15.0" />
