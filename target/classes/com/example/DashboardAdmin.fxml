@@ -34,22 +34,32 @@
                         <FontAwesomeIcon glyphName="BELL" size="2em" />
                      </children>
                   </HBox>
-                  <BarChart layoutX="27.0" layoutY="95.0" prefHeight="219.0" prefWidth="293.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
-                  <StackedBarChart layoutX="329.0" layoutY="99.0" prefHeight="214.0" prefWidth="291.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </StackedBarChart>
+
+                  <HBox layoutX="27.0" layoutY="95.0" prefHeight="219.0" prefWidth="620.0">
+                     <children>
+                        <BarChart fx:id="platChart" prefHeight="400.0" prefWidth="300.0">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" tickLabelRotation="-90" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" label="Revenus" />
+                            </yAxis>
+                            <!-- Ajustements pour la hauteur des colonnes -->
+                            <barGap>1</barGap> <!-- Espace entre les colonnes -->
+                            <categoryGap>10</categoryGap> <!-- Espace entre les catégories (étiquettes sur l'axe des abscisses) -->
+                        </BarChart>
+
+                        <StackedBarChart fx:id="stackedBarChart" prefHeight="300.0" prefWidth="300.0" AnchorPane.topAnchor="50.0">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" />
+                            </yAxis>
+                        </StackedBarChart>
+                     </children>
+                  </HBox>
+
                   <Pane layoutX="640.0" layoutY="108.0" prefHeight="491.0" prefWidth="265.0" style="-fx-background-color: white; -fx-background-radius: 20;">
                      <children>
                         <Button layoutX="45.0" layoutY="428.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #780000;" text="Voir mon menu" textFill="WHITE">
@@ -62,12 +72,13 @@
                         </Button>
                      </children>
                   </Pane>
-               </children></Pane>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" onMouseExited="#hidemenu" prefHeight="723.0" prefWidth="138.0" style="-fx-background-color: White;" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
+      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" prefHeight="715.0" prefWidth="137.0" style="-fx-background-color: White;" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
          <children>
-            <VBox layoutY="8.0" prefHeight="715.0" prefWidth="138.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0">
+            <VBox prefHeight="700.0" prefWidth="210.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                <children>
                   <Label prefHeight="38.0" prefWidth="179.0" text="AMIYR">
                      <font>
@@ -140,14 +151,14 @@
                         </JFXButton>
                      </children>
                      <VBox.margin>
-                        <Insets top="335.0" />
+                        <Insets top="340.0" />
                      </VBox.margin>
                   </VBox>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane onMouseEntered="#showmenu" prefHeight="713.0" prefWidth="56.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0">
+      <AnchorPane onMouseEntered="#showmenu" onMouseExited="#hidemenu" prefHeight="713.0" prefWidth="56.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0">
          <children>
             <VBox alignment="TOP_CENTER" layoutY="-0.8" prefHeight="716.0" prefWidth="56.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="-1.0">
                <children>
