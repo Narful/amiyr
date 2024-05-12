@@ -138,12 +138,11 @@ public class SignupController {
         for (char c : password.toCharArray()) {
             if (Character.isUpperCase(c)) {
                 hasUpperCase = true;
-            } else if (!Character.isLowerCase(c)) {
-                hasSpecialCharacter = true;
             } else if (Character.isDigit(c)) {
                 hasNumber = true;
+            } else if (!Character.isLetterOrDigit(c)) {
+                hasSpecialCharacter = true;
             }
-
         }
 
         return hasUpperCase && hasSpecialCharacter && hasNumber;

@@ -83,8 +83,14 @@ public class SigninController {
                 NotifSuspenduController controller = new NotifSuspenduController();
                 controller.showNotification();
                 return;
+            } else if (Utilisateur.role.equals("admin")) {
+                try {
+                    App.setRoot("DashboardAdmin");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else {
-                System.out.println("Login succeeded");
+                System.out.println("User found.");
             }
         } else {
             errorBox.setVisible(true);

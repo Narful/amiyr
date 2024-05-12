@@ -5,6 +5,7 @@ module com.example {
     requires java.mail;
     requires fontawesomefx;
     requires javafx.graphics;
+    requires com.jfoenix;
 
     opens com.example to javafx.fxml;
 
