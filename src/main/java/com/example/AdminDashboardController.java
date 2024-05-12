@@ -1,5 +1,6 @@
 package com.example;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -27,7 +28,6 @@ public class AdminDashboardController {
     private AnchorPane menuitems;
     private LineChart<String, Number> revenuMensuelChart;
 
-
     @FXML
     private BarChart<String, Number> platChart;
 
@@ -36,11 +36,21 @@ public class AdminDashboardController {
 
     @FXML
     void hidemenu(MouseEvent event) {
-
+        menuitems.setVisible(false);
     }
 
     @FXML
     void showmenu(MouseEvent event) {
+        menuitems.setVisible(true);
+    }
+
+    @FXML
+    void forMonth(ActionEvent event) {
+
+    }
+
+    @FXML
+    void forWeek(ActionEvent event) {
 
     }
 
@@ -56,7 +66,8 @@ public class AdminDashboardController {
             Date dateDebut = cal.getTime(); // Convertir en objet Date
 
             // Créer la date de fin pour le mois actuel
-            cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH)); // Mettre le jour au dernier jour du mois
+            cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH)); // Mettre le jour au dernier
+                                                                                         // jour du mois
             Date dateFin = cal.getTime(); // Convertir en objet Date
 
             // Appel des méthodes pour peupler les graphiques
@@ -70,10 +81,9 @@ public class AdminDashboardController {
         }
     }
 
-
-
     // Méthode pour peupler les graphes avec les données des plats les plus vendus
-    public void populateRevenuPlatChart(Connection connection, Date dateDebut, Date dateFin, BarChart<String, Number> revenuPlatChart) {
+    public void populateRevenuPlatChart(Connection connection, Date dateDebut, Date dateFin,
+            BarChart<String, Number> revenuPlatChart) {
         Admin admin = new Admin();
         Map<String, Integer> revenuPlats = admin.calculerRevenuPlats(connection, dateDebut, dateFin);
 
@@ -89,9 +99,9 @@ public class AdminDashboardController {
         revenuPlatChart.setTitle("Revenu des plats les plus vendus");
     }
 
-
     // Votre méthode calculerCommandesLivreesEtAnnulees
-    public void populateStackedBarChart(Connection connection, Date dateDebut, Date dateFin, StackedBarChart<String, Number> stackedBarChart) {
+    public void populateStackedBarChart(Connection connection, Date dateDebut, Date dateFin,
+            StackedBarChart<String, Number> stackedBarChart) {
         Admin admin = new Admin();
         int[] commandes = admin.calculerCommandesLivreesEtAnnulees(connection, dateDebut, dateFin);
 
@@ -111,6 +121,7 @@ public class AdminDashboardController {
         stackedBarChart.setTitle("Statistiques de commandes");
 
     }
+
     // Votre méthode calculerPlatsLesPlusVendus
     public Map<String, Integer> calculerPlatsLesPlusVendus(Connection connection, Date dateDebut, Date dateFin) {
         Admin admin = new Admin();
@@ -123,8 +134,4 @@ public class AdminDashboardController {
         return admin.calculerCommandesLivreesEtAnnulees(connection, dateDebut, dateFin);
     }
 
-
-
-
 }
-

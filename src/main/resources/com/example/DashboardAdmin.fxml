@@ -34,31 +34,26 @@
                         <FontAwesomeIcon glyphName="BELL" size="2em" />
                      </children>
                   </HBox>
+                  <BarChart fx:id="platChart" layoutY="179.0" prefHeight="284.0" prefWidth="300.0">
+                      <xAxis>
+                          <CategoryAxis side="BOTTOM" tickLabelRotation="-90" />
+                      </xAxis>
+                      <yAxis>
+                          <NumberAxis label="Revenus" side="LEFT" />
+                      </yAxis>
+                      <!-- Ajustements pour la hauteur des colonnes -->
+                      <barGap>1</barGap> <!-- Espace entre les colonnes -->
+                      <categoryGap>10</categoryGap> <!-- Espace entre les catégories (étiquettes sur l'axe des abscisses) -->
+                  </BarChart>
 
-                  <HBox layoutX="27.0" layoutY="95.0" prefHeight="219.0" prefWidth="620.0">
-                     <children>
-                        <BarChart fx:id="platChart" prefHeight="400.0" prefWidth="300.0">
-                            <xAxis>
-                                <CategoryAxis side="BOTTOM" tickLabelRotation="-90" />
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis side="LEFT" label="Revenus" />
-                            </yAxis>
-                            <!-- Ajustements pour la hauteur des colonnes -->
-                            <barGap>1</barGap> <!-- Espace entre les colonnes -->
-                            <categoryGap>10</categoryGap> <!-- Espace entre les catégories (étiquettes sur l'axe des abscisses) -->
-                        </BarChart>
-
-                        <StackedBarChart fx:id="stackedBarChart" prefHeight="300.0" prefWidth="300.0" AnchorPane.topAnchor="50.0">
-                            <xAxis>
-                                <CategoryAxis side="BOTTOM" />
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis side="LEFT" />
-                            </yAxis>
-                        </StackedBarChart>
-                     </children>
-                  </HBox>
+                  <StackedBarChart fx:id="stackedBarChart" layoutX="318.0" layoutY="179.0" prefHeight="284.0" prefWidth="300.0">
+                      <xAxis>
+                          <CategoryAxis side="BOTTOM" />
+                      </xAxis>
+                      <yAxis>
+                          <NumberAxis side="LEFT" />
+                      </yAxis>
+                  </StackedBarChart>
 
                   <Pane layoutX="640.0" layoutY="108.0" prefHeight="491.0" prefWidth="265.0" style="-fx-background-color: white; -fx-background-radius: 20;">
                      <children>
@@ -72,6 +67,8 @@
                         </Button>
                      </children>
                   </Pane>
+                  <Button layoutX="62.0" layoutY="98.0" mnemonicParsing="false" onAction="#forMonth" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #003049;" text="Ce mois" textFill="WHITE" />
+                  <Button layoutX="181.0" layoutY="98.0" mnemonicParsing="false" onAction="#forWeek" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #ffffff; -fx-border-color: #003049; -fx-border-width: 0.5; -fx-border-radius: 5;" text="Cette semaine" textFill="#003049" />
                </children>
             </Pane>
          </children>
