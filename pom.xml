@@ -76,7 +76,7 @@
         		</includes>
     		</resource>
             <resource>
-                <directory>src/main/resources/img</directory>
+                <directory>src/main/resources/com/example/img</directory>
                 <includes>
                     <include>*</include>
                 </includes>
