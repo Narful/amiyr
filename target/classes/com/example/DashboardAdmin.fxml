@@ -65,9 +65,9 @@
                </children></Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" prefHeight="715.0" prefWidth="137.0" style="-fx-background-color: White;" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
+      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" onMouseExited="#hidemenu" prefHeight="723.0" prefWidth="138.0" style="-fx-background-color: White;" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
          <children>
-            <VBox prefHeight="700.0" prefWidth="210.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+            <VBox layoutY="8.0" prefHeight="715.0" prefWidth="138.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0">
                <children>
                   <Label prefHeight="38.0" prefWidth="179.0" text="AMIYR">
                      <font>
@@ -140,14 +140,14 @@
                         </JFXButton>
                      </children>
                      <VBox.margin>
-                        <Insets top="340.0" />
+                        <Insets top="335.0" />
                      </VBox.margin>
                   </VBox>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane onMouseEntered="#showmenu" onMouseExited="#hidemenu" prefHeight="713.0" prefWidth="56.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0">
+      <AnchorPane onMouseEntered="#showmenu" prefHeight="713.0" prefWidth="56.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0">
          <children>
             <VBox alignment="TOP_CENTER" layoutY="-0.8" prefHeight="716.0" prefWidth="56.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="-1.0">
                <children>
