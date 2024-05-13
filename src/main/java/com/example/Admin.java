@@ -45,13 +45,17 @@ public class Admin extends Utilisateur {
       }
    }
 
-   public Map<String, Integer> calculerRevenuPlats(Connection connection, Date dateDebut, Date dateFin) {
-      Map<String, Integer> revenuPlats = new HashMap<>();
-      String query = "SELECT nom, SUM(prix * qte) AS revenu_total FROM plat " +
+   public Map<String, Integer> calculerPlatsLesPlusVendus(Connection connection, Date dateDebut, Date dateFin) {
+      Map<String, Integer> platsVendus = new HashMap<>();
+      String query = "SELECT plat.nom, COUNT(*) AS qte_vendue " +
+              "FROM plat " +
               "INNER JOIN panier_plat ON plat.idPlat = panier_plat.idPlat " +
               "INNER JOIN panier ON panier_plat.idPanier = panier.idPanier " +
               "INNER JOIN commande ON panier.idPanier = commande.idPanier " +
-              "WHERE commande.Creadate BETWEEN ? AND ? GROUP BY plat.nom ORDER BY revenu_total DESC LIMIT 5";
+              "WHERE commande.Creadate BETWEEN ? AND ? " +
+              "GROUP BY plat.nom " +
+              "ORDER BY qte_vendue DESC " +
+              "LIMIT 5";
 
       try (PreparedStatement statement = connection.prepareStatement(query)) {
          statement.setDate(1, new java.sql.Date(dateDebut.getTime()));
@@ -59,41 +63,52 @@ public class Admin extends Utilisateur {
          ResultSet resultSet = statement.executeQuery();
          while (resultSet.next()) {
             String plat = resultSet.getString("nom");
-            int revenuTotal = resultSet.getInt("revenu_total");
-            revenuPlats.put(plat, revenuTotal);
+            int qteVendue = resultSet.getInt("qte_vendue");
+            platsVendus.put(plat, qteVendue);
          }
       } catch (SQLException e) {
          e.printStackTrace();
       }
 
-      return revenuPlats;
+      return platsVendus;
    }
 
 
-   public int[] calculerCommandesLivreesEtAnnulees(Connection connection, Date dateDebut, Date dateFin) {
-      int[] commandes = new int[2]; // Index 0 pour les commandes livrées, index 1 pour les commandes annulées
-      String queryLivrees = "SELECT COUNT(*) AS livrees FROM livraison INNER JOIN commande ON livraison.idCommande = commande.idCommande " +
-              "WHERE commande.Creadate BETWEEN ? AND ? AND livraison.status = 1";
-      String queryAnnulees = "SELECT COUNT(*) AS annulees FROM livraison INNER JOIN commande ON livraison.idCommande = commande.idCommande " +
-              "WHERE commande.Creadate BETWEEN ? AND ? AND livraison.status = -1";
 
-      try {
-         // Calculer les commandes livrées
-         PreparedStatement statementLivrees = connection.prepareStatement(queryLivrees);
+
+   public Map<String, Integer> calculerCommandesLivreesEtAnnulees(Connection connection, Date dateDebut, Date dateFin) {
+      Map<String, Integer> commandes = new HashMap<>();
+      String queryLivrees = "SELECT COUNT(*) AS livrees " +
+              "FROM commande c " +
+              "INNER JOIN livraison l ON c.idCommande = l.idCommande " +
+              "WHERE c.Creadate BETWEEN ? AND ? " +
+              "AND l.status = 1";
+
+      String queryAnnulees = "SELECT COUNT(*) AS annulees " +
+              "FROM commande c " +
+              "INNER JOIN livraison l ON c.idCommande = l.idCommande " +
+              "WHERE c.Creadate BETWEEN ? AND ? " +
+              "AND l.status = -1";
+
+      try (PreparedStatement statementLivrees = connection.prepareStatement(queryLivrees);
+           PreparedStatement statementAnnulees = connection.prepareStatement(queryAnnulees)) {
          statementLivrees.setDate(1, new java.sql.Date(dateDebut.getTime()));
          statementLivrees.setDate(2, new java.sql.Date(dateFin.getTime()));
-         ResultSet resultSetLivrees = statementLivrees.executeQuery();
-         if (resultSetLivrees.next()) {
-            commandes[0] = resultSetLivrees.getInt("livrees");
-         }
-
-         // Calculer les commandes annulées
-         PreparedStatement statementAnnulees = connection.prepareStatement(queryAnnulees);
          statementAnnulees.setDate(1, new java.sql.Date(dateDebut.getTime()));
          statementAnnulees.setDate(2, new java.sql.Date(dateFin.getTime()));
+
+         ResultSet resultSetLivrees = statementLivrees.executeQuery();
+         if (resultSetLivrees.next()) {
+            commandes.put("livrees", resultSetLivrees.getInt("livrees"));
+         } else {
+            commandes.put("livrees", 0); // Ajouter 0 si aucune commande livrée trouvée
+         }
+
          ResultSet resultSetAnnulees = statementAnnulees.executeQuery();
          if (resultSetAnnulees.next()) {
-            commandes[1] = resultSetAnnulees.getInt("annulees");
+            commandes.put("annulees", resultSetAnnulees.getInt("annulees"));
+         } else {
+            commandes.put("annulees", 0); // Ajouter 0 si aucune commande annulée trouvée
          }
       } catch (SQLException e) {
          e.printStackTrace();
@@ -101,6 +116,51 @@ public class Admin extends Utilisateur {
 
       return commandes;
    }
+   public Integer[] getOrdersForDay(Connection connection, Date day) {
+      Integer[] orders = new Integer[2];
+      orders[0] = getDeliveredOrdersForDay(connection, day);
+      orders[1] = getCancelledOrdersForDay(connection, day);
+      return orders;
+   }
+
+   private int getDeliveredOrdersForDay(Connection connection, Date day) {
+      String query = "SELECT COUNT(*) AS livrees " +
+              "FROM commande c " +
+              "INNER JOIN livraison l ON c.idCommande = l.idCommande " +
+              "WHERE c.Creadate = ? " +
+              "AND l.status = 1";
+      try (PreparedStatement statement = connection.prepareStatement(query)) {
+         statement.setDate(1, new java.sql.Date(day.getTime()));
+         ResultSet resultSet = statement.executeQuery();
+         if (resultSet.next()) {
+            return resultSet.getInt("livrees");
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+      return 0;
+   }
+
+   private int getCancelledOrdersForDay(Connection connection, Date day) {
+      String query = "SELECT COUNT(*) AS annulees " +
+              "FROM commande c " +
+              "INNER JOIN livraison l ON c.idCommande = l.idCommande " +
+              "WHERE c.Creadate = ? " +
+              "AND l.status = -1";
+      try (PreparedStatement statement = connection.prepareStatement(query)) {
+         statement.setDate(1, new java.sql.Date(day.getTime()));
+         ResultSet resultSet = statement.executeQuery();
+         if (resultSet.next()) {
+            return resultSet.getInt("annulees");
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+      return 0;
+   }
+
+
+
 
 
 

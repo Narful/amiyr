@@ -13,6 +13,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignupController {
 
@@ -32,6 +34,8 @@ public class SignupController {
     private HBox errorBoxChamps;
     @FXML
     private HBox errorBoxEmail;
+    @FXML
+    private HBox errorBoxEmail1;
     @FXML
     private HBox errorBoxPwdNoCondition;
     @FXML
@@ -85,6 +89,11 @@ public class SignupController {
             return;
         }
 
+        if (isValidEmail(email.getText())) {
+            errorBoxEmail1.setVisible(true);
+            return;
+        }
+
         if (!isPasswordValid(pwd.getText())) {
             errorBoxPwdNoCondition.setVisible(true);
             return;
@@ -95,24 +104,34 @@ public class SignupController {
             return;
         }
 
-        if (profil.getText().equals("Admin")) {
-            Admin admin = new Admin();
-            admin.creerCompte(nom.getText(), prenom.getText(), email.getText(), pwd.getText(), profil.getText());
-            try {
-                App.setRoot("signin");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else if (profil.getText().equals("Client")) {
-            Client client = new Client();
-            client.creerCompte(nom.getText(), prenom.getText(), email.getText(), pwd.getText(), profil.getText());
-            try {
-                App.setRoot("signin");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        String role = profil.getText().toLowerCase(); // Convertir le rôle en minuscules
 
+        if (role.equals("admin") || role.equals("client")) { // Vérifier que le rôle est valide
+            Utilisateur utilisateur; // Déclarer une variable de type Utilisateur
+            if (role.equals("admin")) {
+                utilisateur = new Admin(); // Créer une instance d'Admin si le rôle est "admin"
+            } else {
+                utilisateur = new Client(); // Créer une instance de Client si le rôle est "client"
+            }
+
+            // Vérifier le type d'utilisateur et appeler la méthode appropriée
+            if (utilisateur instanceof Admin) {
+                ((Admin) utilisateur).creerCompte(nom.getText(), prenom.getText(), email.getText(), pwd.getText(),
+                        role);
+            } else if (utilisateur instanceof Client) {
+                ((Client) utilisateur).creerCompte(nom.getText(), prenom.getText(), email.getText(), pwd.getText(),
+                        role);
+            }
+
+            try {
+                App.setRoot("signin");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Afficher un message d'erreur si le rôle n'est pas valide
+            System.out.println("Le rôle spécifié n'est pas valide.");
+        }
     }
 
     private boolean areFieldsEmpty() {
@@ -120,9 +139,18 @@ public class SignupController {
                 || pwd.getText().isEmpty() || pwd1.getText().isEmpty() || profil.getText().equals("Choisir un profil");
     }
 
+    public static boolean isValidEmail(String email) {
+        // Regular expression to match email addresses
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
     private void hideErrorMessages() {
         errorBoxChamps.setVisible(false);
         errorBoxEmail.setVisible(false);
+        errorBoxEmail1.setVisible(false);
         errorBoxPwd.setVisible(false);
         errorBoxPwdNoCondition.setVisible(false);
     }

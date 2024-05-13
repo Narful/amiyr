@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -15,11 +16,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class AdminDashboardController {
@@ -46,12 +51,50 @@ public class AdminDashboardController {
 
     @FXML
     void forMonth(ActionEvent event) {
+        // Réinitialiser les dates pour le mois actuel
+        Calendar cal = Calendar.getInstance();
+        int month = cal.get(Calendar.MONTH) + 1;
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        Date dateDebut = cal.getTime();
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date dateFin = cal.getTime();
 
+        // Mettre à jour les données dans les graphiques
+        updateGraphs(dateDebut, dateFin);
     }
 
     @FXML
     void forWeek(ActionEvent event) {
+        // Réinitialiser les dates pour la semaine actuelle
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        Date dateDebut = cal.getTime();
+        cal.add(Calendar.DATE, 6);
+        Date dateFin = cal.getTime();
 
+        // Mettre à jour les données dans les graphiques
+        updateGraphs(dateDebut, dateFin);
+    }
+
+    private void updateGraphs(Date dateDebut, Date dateFin) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            populateRevenuPlatChart(connection, dateDebut, dateFin, platChart, false);
+            populateStackedBarChart(connection, dateDebut, dateFin, stackedBarChart);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    private void updateBarChart(Date dateDebut, Date dateFin, boolean isForMonth) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            populateRevenuPlatChart(connection, dateDebut, dateFin, platChart, isForMonth);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -67,12 +110,12 @@ public class AdminDashboardController {
 
             // Créer la date de fin pour le mois actuel
             cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH)); // Mettre le jour au dernier
-                                                                                         // jour du mois
+            // jour du mois
             Date dateFin = cal.getTime(); // Convertir en objet Date
 
             // Appel des méthodes pour peupler les graphiques
             Connection connection = DatabaseConnection.getConnection();
-            populateRevenuPlatChart(connection, dateDebut, dateFin, platChart);
+            populateRevenuPlatChart(connection, dateDebut, dateFin, platChart, false);
             populateStackedBarChart(connection, dateDebut, dateFin, stackedBarChart);
 
             // Appel de la méthode pour peupler le graphique de revenus mensuels
@@ -83,55 +126,166 @@ public class AdminDashboardController {
 
     // Méthode pour peupler les graphes avec les données des plats les plus vendus
     public void populateRevenuPlatChart(Connection connection, Date dateDebut, Date dateFin,
-            BarChart<String, Number> revenuPlatChart) {
+                                        BarChart<String, Number> revenuPlatChart, boolean isForMonth) {
         Admin admin = new Admin();
-        Map<String, Integer> revenuPlats = admin.calculerRevenuPlats(connection, dateDebut, dateFin);
+        Map<String, Integer> revenuPlats = admin.calculerPlatsLesPlusVendus(connection, dateDebut, dateFin);
 
         revenuPlatChart.getData().clear();
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Revenu par plat");
 
         for (Map.Entry<String, Integer> entry : revenuPlats.entrySet()) {
-            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+            String platName = entry.getKey();
+            // Tronquer le nom du plat si nécessaire pour éviter le chevauchement
+            if (platName.length() > 10) {
+                platName = platName.substring(0, 10) + "..."; // Tronquer le nom à 10 caractères
+            }
+            series.getData().add(new XYChart.Data<>(platName, entry.getValue()));
         }
 
         revenuPlatChart.getData().add(series);
         revenuPlatChart.setTitle("Revenu des plats les plus vendus");
+
+        // Ajuster la position et l'alignement des étiquettes
+        for (Node bar : revenuPlatChart.lookupAll(".default-color0.chart-bar")) {
+            if (bar instanceof StackPane) {
+                for (Node node : ((StackPane) bar).getChildren()) {
+                    if (node instanceof Text) {
+                        if (isForMonth) {
+                            ((Text) node).setRotate(-90); // Rotation de l'étiquette à 90 degrés pour un meilleur ajustement vertical
+                            ((Text) node).setTranslateX(-10); // Déplacer l'étiquette vers la gauche pour un meilleur alignement
+                        } else {
+                            ((Text) node).setRotate(90); // Rotation de l'étiquette à -90 degrés pour afficher du haut vers le bas
+                            ((Text) node).setTranslateX(10); // Déplacer l'étiquette vers la droite pour un meilleur alignement
+                        }
+                    }
+                }
+            }
+        }
+
+        // Désactiver l'animation des barres pour éviter les mouvements indésirables
+        revenuPlatChart.setAnimated(false);
     }
 
     // Votre méthode calculerCommandesLivreesEtAnnulees
     public void populateStackedBarChart(Connection connection, Date dateDebut, Date dateFin,
-            StackedBarChart<String, Number> stackedBarChart) {
-        Admin admin = new Admin();
-        int[] commandes = admin.calculerCommandesLivreesEtAnnulees(connection, dateDebut, dateFin);
+                                        StackedBarChart<String, Number> stackedBarChart) {
+        // Obtenir les commandes par mois
+        Map<String, Integer[]> monthlyOrders = getMonthlyOrders(connection, dateDebut, dateFin);
 
+        // Effacer les données précédentes du graphique
         stackedBarChart.getData().clear();
-        XYChart.Series<String, Number> seriesLivrees = new XYChart.Series<>();
-        seriesLivrees.setName("Commandes Livrées");
-        seriesLivrees.getData().add(new XYChart.Data<>("", commandes[0]));
 
-        XYChart.Series<String, Number> seriesAnnulees = new XYChart.Series<>();
-        seriesAnnulees.setName("Commandes Annulées");
-        seriesAnnulees.getData().add(new XYChart.Data<>("", commandes[1]));
+        // Créer une série pour les commandes livrées
+        XYChart.Series<String, Number> seriesDelivered = new XYChart.Series<>();
+        seriesDelivered.setName("Commandes Livrées");
 
-        stackedBarChart.getData().addAll(seriesLivrees, seriesAnnulees);
+        // Créer une série pour les commandes annulées
+        XYChart.Series<String, Number> seriesCancelled = new XYChart.Series<>();
+        seriesCancelled.setName("Commandes Annulées");
 
-        // Ajoutez une classe CSS personnalisée pour positionner la légende
-        stackedBarChart.getStyleClass().add("legend-position");
-        stackedBarChart.setTitle("Statistiques de commandes");
+        // Parcourir chaque mois et ajouter les données à la série respective
+        for (Map.Entry<String, Integer[]> entry : monthlyOrders.entrySet()) {
+            String month = entry.getKey();
+            Integer[] orders = entry.getValue();
+            seriesDelivered.getData().add(new XYChart.Data<>(month, orders[0]));
+            seriesCancelled.getData().add(new XYChart.Data<>(month, orders[1]));
+        }
 
+        // Ajouter les séries au graphique empilé
+        stackedBarChart.getData().addAll(seriesDelivered, seriesCancelled);
+
+        // Désactiver l'animation
+        stackedBarChart.setAnimated(false);
+
+        // Définir le titre du graphique
+        stackedBarChart.setTitle("Statistiques de commandes par mois");
     }
+
+    // Méthode pour obtenir les commandes livrées et annulées par jour
+    private Map<Date, Integer[]> getDailyOrders(Connection connection, Date dateDebut, Date dateFin) {
+        Map<Date, Integer[]> dailyOrders = new HashMap<>();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dateDebut);
+
+        // Parcourir chaque jour dans la période spécifiée
+        while (!cal.getTime().after(dateFin)) {
+            Date day = cal.getTime();
+            Integer[] orders = getOrdersForDay(connection, day);
+            dailyOrders.put(day, orders);
+            cal.add(Calendar.DAY_OF_MONTH, 1); // Passer au jour suivant
+        }
+
+        return dailyOrders;
+    }
+
+    // Méthode pour obtenir les commandes livrées et annulées pour un jour spécifique
+    private Integer[] getOrdersForDay(Connection connection, Date day) {
+        Admin admin = new Admin();
+        return admin.getOrdersForDay(connection, day);
+    }
+
+    // Méthode pour formater une date en chaîne de caractères
+    private String formatDate(Date date) {
+        // Ici, vous pouvez utiliser SimpleDateFormat ou une autre méthode pour formater la date selon vos préférences
+        return ""; // Implémentez votre logique de formatage ici
+    }
+    private Map<String, Integer[]> getMonthlyOrders(Connection connection, Date dateDebut, Date dateFin) {
+        Map<String, Integer[]> monthlyOrders = new HashMap<>();
+        // Votre requête SQL pour récupérer les commandes par mois
+        // Assurez-vous de grouper les commandes par mois
+        String query = "SELECT DATE_FORMAT(Creadate, '%Y-%m') AS month, " +
+                "SUM(CASE WHEN l.status = 1 THEN 1 ELSE 0 END) AS delivered, " +
+                "SUM(CASE WHEN l.status = -1 THEN 1 ELSE 0 END) AS cancelled " +
+                "FROM commande c " +
+                "INNER JOIN livraison l ON c.idCommande = l.idCommande " +
+                "WHERE c.Creadate BETWEEN ? AND ? " +
+                "GROUP BY DATE_FORMAT(Creadate, '%Y-%m')";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setDate(1, new java.sql.Date(dateDebut.getTime()));
+            statement.setDate(2, new java.sql.Date(dateFin.getTime()));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String month = resultSet.getString("month");
+                int delivered = resultSet.getInt("delivered");
+                int cancelled = resultSet.getInt("cancelled");
+                monthlyOrders.put(month, new Integer[]{delivered, cancelled});
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return monthlyOrders;
+    }
+
+
+
+
+
 
     // Votre méthode calculerPlatsLesPlusVendus
     public Map<String, Integer> calculerPlatsLesPlusVendus(Connection connection, Date dateDebut, Date dateFin) {
         Admin admin = new Admin();
-        return admin.calculerRevenuPlats(connection, dateDebut, dateFin);
+        return admin.calculerPlatsLesPlusVendus(connection, dateDebut, dateFin);
     }
 
     // Votre méthode calculerCommandesLivreesEtAnnulees
-    public int[] calculerCommandesLivreesEtAnnulees(Connection connection, Date dateDebut, Date dateFin) {
+    public int[] getCommandesLivreesEtAnnulees(Connection connection, Date dateDebut, Date dateFin) {
         Admin admin = new Admin();
-        return admin.calculerCommandesLivreesEtAnnulees(connection, dateDebut, dateFin);
+
+        // Calculer les commandes livrées et annulées pour la période spécifiée
+        Map<String, Integer> commandes = admin.calculerCommandesLivreesEtAnnulees(connection, dateDebut, dateFin);
+
+        // Créer un tableau de deux éléments pour stocker les commandes livrées et annulées
+        int[] result = new int[2];
+
+        // Remplir le tableau avec les valeurs de la map
+        result[0] = commandes.getOrDefault("livrees", 0);
+        result[1] = commandes.getOrDefault("annulees", 0);
+
+        return result;
     }
+
+
 
 }
