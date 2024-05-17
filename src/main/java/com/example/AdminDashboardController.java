@@ -168,56 +168,57 @@ public class AdminDashboardController {
     }
 
     // Votre méthode calculerCommandesLivreesEtAnnulees
-    public void populateStackedBarChart(Connection connection, Date dateDebut, Date dateFin,
-                                        StackedBarChart<String, Number> stackedBarChart) {
-        // Obtenir les commandes par mois
-        Map<String, Integer[]> monthlyOrders = getMonthlyOrders(connection, dateDebut, dateFin);
+    public void populateStackedBarChart(Connection connection, Date dateDebut, Date dateFin, StackedBarChart<String, Number> stackedBarChart) {
+        Map<String, Integer[]> dailyOrders = getDailyOrders(connection, dateDebut, dateFin);
 
-        // Effacer les données précédentes du graphique
         stackedBarChart.getData().clear();
 
-        // Créer une série pour les commandes livrées
         XYChart.Series<String, Number> seriesDelivered = new XYChart.Series<>();
         seriesDelivered.setName("Commandes Livrées");
 
-        // Créer une série pour les commandes annulées
         XYChart.Series<String, Number> seriesCancelled = new XYChart.Series<>();
         seriesCancelled.setName("Commandes Annulées");
 
-        // Parcourir chaque mois et ajouter les données à la série respective
-        for (Map.Entry<String, Integer[]> entry : monthlyOrders.entrySet()) {
-            String month = entry.getKey();
+        for (Map.Entry<String, Integer[]> entry : dailyOrders.entrySet()) {
+            String day = entry.getKey();
             Integer[] orders = entry.getValue();
-            seriesDelivered.getData().add(new XYChart.Data<>(month, orders[0]));
-            seriesCancelled.getData().add(new XYChart.Data<>(month, orders[1]));
+            seriesDelivered.getData().add(new XYChart.Data<>(day, orders[0]));
+            seriesCancelled.getData().add(new XYChart.Data<>(day, orders[1]));
         }
 
-        // Ajouter les séries au graphique empilé
         stackedBarChart.getData().addAll(seriesDelivered, seriesCancelled);
-
-        // Désactiver l'animation
         stackedBarChart.setAnimated(false);
-
-        // Définir le titre du graphique
-        stackedBarChart.setTitle("Statistiques de commandes par mois");
+        stackedBarChart.setTitle("Statistiques de commandes par jour");
     }
+
 
     // Méthode pour obtenir les commandes livrées et annulées par jour
-    private Map<Date, Integer[]> getDailyOrders(Connection connection, Date dateDebut, Date dateFin) {
-        Map<Date, Integer[]> dailyOrders = new HashMap<>();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(dateDebut);
+    private Map<String, Integer[]> getDailyOrders(Connection connection, Date dateDebut, Date dateFin) {
+        Map<String, Integer[]> dailyOrders = new HashMap<>();
+        String query = "SELECT DATE_FORMAT(Creadate, '%Y-%m-%d') AS day, " +
+                "SUM(CASE WHEN l.status = 1 THEN 1 ELSE 0 END) AS delivered, " +
+                "SUM(CASE WHEN l.status = -1 THEN 1 ELSE 0 END) AS cancelled " +
+                "FROM commande c " +
+                "INNER JOIN livraison l ON c.idCommande = l.idCommande " +
+                "WHERE c.Creadate BETWEEN ? AND ? " +
+                "GROUP BY DATE_FORMAT(Creadate, '%Y-%m-%d')";
 
-        // Parcourir chaque jour dans la période spécifiée
-        while (!cal.getTime().after(dateFin)) {
-            Date day = cal.getTime();
-            Integer[] orders = getOrdersForDay(connection, day);
-            dailyOrders.put(day, orders);
-            cal.add(Calendar.DAY_OF_MONTH, 1); // Passer au jour suivant
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setDate(1, new java.sql.Date(dateDebut.getTime()));
+            statement.setDate(2, new java.sql.Date(dateFin.getTime()));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String day = resultSet.getString("day");
+                int delivered = resultSet.getInt("delivered");
+                int cancelled = resultSet.getInt("cancelled");
+                dailyOrders.put(day, new Integer[]{delivered, cancelled});
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
         return dailyOrders;
     }
+
 
     // Méthode pour obtenir les commandes livrées et annulées pour un jour spécifique
     private Integer[] getOrdersForDay(Connection connection, Date day) {
