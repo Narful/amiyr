@@ -1,17 +1,17 @@
 package com.example;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.Properties;
+import java.util.Random;
 
-import javax.mail.Session;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -22,7 +22,6 @@ public class Utilisateur {
    public static String prenom;
    public static String email;
    public static String motDePasse;
-   public static String etat;
    public static String role;
 
    public static Boolean CheckEmail(String email) {
@@ -72,9 +71,8 @@ public class Utilisateur {
                   idCpt = resultSet.getInt("idCpt");
                   nom = resultSet.getString("nom");
                   prenom = resultSet.getString("prenom");
-                  email = resultSet.getString("email");
-                  motDePasse = resultSet.getString("motDePasse");
-                  etat = resultSet.getString("etat");
+                  Utilisateur.email = resultSet.getString("email");
+                  Utilisateur.motDePasse = resultSet.getString("motDePasse");
                   role = resultSet.getString("role");
                   return true;
                } else {
@@ -94,7 +92,6 @@ public class Utilisateur {
       prenom = null;
       email = null;
       motDePasse = null;
-      etat = null;
       role = null;
    }
 
@@ -141,7 +138,7 @@ public class Utilisateur {
          message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
          message.setSubject("AMIYR - Réinitialisation du mot de passe");
          message.setText("Cher utilisateur,\n\nVotre nouveau mot de passe est : " + newPassword
-               + "\n\nVeuillez le garder confidentiel.");
+                 + "\n\nVeuillez le garder confidentiel.");
 
          // Send message
          Transport.send(message);
@@ -169,5 +166,4 @@ public class Utilisateur {
          return false;
       }
    }
-
 }
