@@ -78,12 +78,7 @@ public class SigninController {
         }
         boolean isUserFound = Utilisateur.seConnecter(userEmail, userPwd);
         if (isUserFound) {
-            if (Utilisateur.etat.equals("suspendu")) {
-                // Create an instance of the controller
-                NotifSuspenduController controller = new NotifSuspenduController();
-                controller.showNotification();
-                return;
-            } else if (Utilisateur.role.equals("admin")) {
+            if (Utilisateur.role.equals("admin")) {
                 try {
                     App.setRoot("DashboardAdmin");
                 } catch (Exception e) {
