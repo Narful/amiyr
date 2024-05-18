@@ -218,6 +218,31 @@ public class AdminDashboardController {
         }
         return dailyOrders;
     }
+    private Map<String, Integer[]> getWeeklyOrders(Connection connection, Date dateDebut, Date dateFin) {
+        Map<String, Integer[]> weeklyOrders = new HashMap<>();
+        String query = "SELECT YEARWEEK(Creadate, 1) AS week, " +
+                "SUM(CASE WHEN l.status = 1 THEN 1 ELSE 0 END) AS delivered, " +
+                "SUM(CASE WHEN l.status = -1 THEN 1 ELSE 0 END) AS cancelled " +
+                "FROM commande c " +
+                "INNER JOIN livraison l ON c.idCommande = l.idCommande " +
+                "WHERE c.Creadate BETWEEN ? AND ? " +
+                "GROUP BY YEARWEEK(Creadate, 1)";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setDate(1, new java.sql.Date(dateDebut.getTime()));
+            statement.setDate(2, new java.sql.Date(dateFin.getTime()));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String week = resultSet.getString("week");
+                int delivered = resultSet.getInt("delivered");
+                int cancelled = resultSet.getInt("cancelled");
+                weeklyOrders.put(week, new Integer[]{delivered, cancelled});
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return weeklyOrders;
+    }
 
 
     // Méthode pour obtenir les commandes livrées et annulées pour un jour spécifique
