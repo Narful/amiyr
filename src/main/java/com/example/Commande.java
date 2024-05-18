@@ -59,6 +59,39 @@ public class Commande {
          return false;
       }
    }
+   public boolean creationlivraison(int idCommande, String note) {
+      try {
+         // Vérifier d'abord si la commande est validée
+         String sqlCheckCommande = "SELECT status FROM commande WHERE idCommande = ?";
+         PreparedStatement checkStatement = connection.prepareStatement(sqlCheckCommande);
+         checkStatement.setInt(1, idCommande);
+         ResultSet resultSet = checkStatement.executeQuery();
+
+         if (resultSet.next()) {
+            boolean status = resultSet.getBoolean("status");
+            if (status) { // Si le statut de la commande est valide (1)
+               // Créer une livraison pour cette commande
+               String sql = "INSERT INTO livraison (idCommande, status) VALUES (?, ?)";
+               PreparedStatement statement = connection.prepareStatement(sql);
+               statement.setInt(1, idCommande); // ID de la commande associée à la livraison
+               statement.setBoolean(2, false); // Statut initial à false (non notifié)
+               int rowsAffected = statement.executeUpdate();
+               return rowsAffected > 0;
+            } else {
+               System.out.println("La commande n'est pas validée. Impossible de créer une livraison.");
+               return false;
+            }
+         } else {
+            System.out.println("La commande n'existe pas.");
+            return false;
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+         return false;
+      }
+   }
+
+
 
 
    public boolean annulerCommande(int idCommande) {
