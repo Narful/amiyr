@@ -43,7 +43,7 @@
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></PasswordField>
-            <Button layoutX="75.0" layoutY="528.0" mnemonicParsing="false" onAction="#onclickSignup" prefHeight="41.0" prefWidth="355.0" style="-fx-background-color: #780000; -fx-border-color: #780000; -fx-border-radius: 5;" text="S'inscrire" textFill="WHITE">
+            <Button layoutX="75.0" layoutY="517.0" mnemonicParsing="false" onAction="#onclickSignup" prefHeight="41.0" prefWidth="355.0" style="-fx-background-color: #780000; -fx-border-color: #780000; -fx-border-radius: 5;" text="S'inscrire" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -60,7 +60,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </SplitMenuButton>
-            <Button id="SendSignin" fx:id="ToSignin" layoutX="75.0" layoutY="584.0" mnemonicParsing="false" onAction="#sendtosignin" prefHeight="41.0" prefWidth="355.0" style="-fx-background-color: #ffffff; -fx-border-color: #404040; -fx-border-radius: 3;" text="J'ai déjà un compte" textFill="#404040">
+            <Button id="SendSignin" fx:id="ToSignin" layoutX="75.0" layoutY="570.0" mnemonicParsing="false" onAction="#sendtosignin" prefHeight="41.0" prefWidth="355.0" style="-fx-background-color: #ffffff; -fx-border-color: #404040; -fx-border-radius: 3;" text="J'ai déjà un compte" textFill="#404040">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -69,7 +69,7 @@
                </cursor>
                
             </Button>
-            <Label fx:id="condition" layoutX="73.0" layoutY="462.0" lineSpacing="3.0" prefHeight="32.0" prefWidth="355.0" text="Le mot de passe doit contenir au mois 8 caractères, une lettre majuscule, un caractère spéciale et un numéro" textFill="#a9a9a9" wrapText="true">
+            <Label fx:id="condition" layoutX="73.0" layoutY="462.0" lineSpacing="3.0" prefHeight="32.0" prefWidth="355.0" text="Le mot de passe doit contenir au mois 8 caractères, une lettre majuscule, une lettre miniscule et un numéro" textFill="#a9a9a9" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
@@ -125,31 +125,14 @@
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="errorBoxPwdNoCondition" alignment="CENTER_LEFT" layoutX="71.0" layoutY="462.0" prefHeight="54.0" prefWidth="355.0" spacing="5.0">
-               <children>
-                  <FontAwesomeIcon fill="#d11e1e" glyphName="EXCLAMATION_CIRCLE">
-                     <HBox.margin>
-                        <Insets bottom="30.0" left="10.0" />
-                     </HBox.margin>
-                  </FontAwesomeIcon>
-                  <Label prefHeight="54.0" prefWidth="322.0" text="Le mot de passe ne satisfait pas les critères requis.Le mot de passe doit contenir au mois 8 caractères, une lettre majuscule, un caractère spéciale et un numéro." textFill="#d11e1e" wrapText="true">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox fx:id="errorBoxEmail1" alignment="CENTER_LEFT" layoutX="71.0" layoutY="462.0" prefHeight="31.0" prefWidth="355.0" spacing="5.0">
+            <HBox fx:id="errorBoxPwdNoCondition" alignment="CENTER_LEFT" layoutX="71.0" layoutY="462.0" prefHeight="31.0" prefWidth="355.0" spacing="5.0">
                <children>
                   <FontAwesomeIcon fill="#d11e1e" glyphName="EXCLAMATION_CIRCLE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </FontAwesomeIcon>
-                  <Label text="Cet email n'est pas valide." textFill="#d11e1e">
+                  <Label text="le mot de passe ne satisfait pas les critères requis" textFill="#d11e1e">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

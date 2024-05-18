@@ -11,17 +11,15 @@ import java.util.Map;
 
 public class Admin extends Utilisateur {
 
-
    public Boolean creerCompte(String nom, String prenom, String email, String motDePasse, String role) {
       try (Connection connection = DatabaseConnection.getConnection()) {
-         String sql = "INSERT INTO Utilisateur (nom, prenom, email, motDePasse, etat, role) VALUES (?, ?, ?, ?, ?, ?)";
+         String sql = "INSERT INTO Utilisateur (nom, prenom, email, motDePasse, role) VALUES (?, ?, ?, ?, ?)";
          PreparedStatement statement = connection.prepareStatement(sql);
          statement.setString(1, nom);
          statement.setString(2, prenom);
          statement.setString(3, email);
          statement.setString(4, motDePasse);
-         statement.setString(5, "actif"); // Affecter l'état "actif"
-         statement.setString(6, role); // Utiliser le rôle fourni
+         statement.setString(5, role); // Utiliser le rôle fourni
 
          int rowsInserted = statement.executeUpdate();
          return rowsInserted > 0; // Si au moins une ligne a été insérée, retourne vrai, sinon retourne faux
@@ -73,9 +71,6 @@ public class Admin extends Utilisateur {
       return platsVendus;
    }
 
-
-
-
    public Map<String, Integer> calculerCommandesLivreesEtAnnulees(Connection connection, Date dateDebut, Date dateFin) {
       Map<String, Integer> commandes = new HashMap<>();
       String queryLivrees = "SELECT COUNT(*) AS livrees " +
@@ -116,6 +111,7 @@ public class Admin extends Utilisateur {
 
       return commandes;
    }
+
    public Integer[] getOrdersForDay(Connection connection, Date day) {
       Integer[] orders = new Integer[2];
       orders[0] = getDeliveredOrdersForDay(connection, day);
@@ -158,10 +154,4 @@ public class Admin extends Utilisateur {
       }
       return 0;
    }
-
-
-
-
-
-
 }

@@ -13,8 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SignupController {
 
@@ -34,8 +32,6 @@ public class SignupController {
     private HBox errorBoxChamps;
     @FXML
     private HBox errorBoxEmail;
-    @FXML
-    private HBox errorBoxEmail1;
     @FXML
     private HBox errorBoxPwdNoCondition;
     @FXML
@@ -89,11 +85,6 @@ public class SignupController {
             return;
         }
 
-        if (isValidEmail(email.getText())) {
-            errorBoxEmail1.setVisible(true);
-            return;
-        }
-
         if (!isPasswordValid(pwd.getText())) {
             errorBoxPwdNoCondition.setVisible(true);
             return;
@@ -116,11 +107,9 @@ public class SignupController {
 
             // Vérifier le type d'utilisateur et appeler la méthode appropriée
             if (utilisateur instanceof Admin) {
-                ((Admin) utilisateur).creerCompte(nom.getText(), prenom.getText(), email.getText(), pwd.getText(),
-                        role);
+                ((Admin) utilisateur).creerCompte(nom.getText(), prenom.getText(), email.getText(), pwd.getText(), role);
             } else if (utilisateur instanceof Client) {
-                ((Client) utilisateur).creerCompte(nom.getText(), prenom.getText(), email.getText(), pwd.getText(),
-                        role);
+                ((Client) utilisateur).creerCompte(nom.getText(), prenom.getText(), email.getText(), pwd.getText(), role);
             }
 
             try {
@@ -134,23 +123,17 @@ public class SignupController {
         }
     }
 
+
+
+
     private boolean areFieldsEmpty() {
         return nom.getText().isEmpty() || prenom.getText().isEmpty() || email.getText().isEmpty()
                 || pwd.getText().isEmpty() || pwd1.getText().isEmpty() || profil.getText().equals("Choisir un profil");
     }
 
-    public static boolean isValidEmail(String email) {
-        // Regular expression to match email addresses
-        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
     private void hideErrorMessages() {
         errorBoxChamps.setVisible(false);
         errorBoxEmail.setVisible(false);
-        errorBoxEmail1.setVisible(false);
         errorBoxPwd.setVisible(false);
         errorBoxPwdNoCondition.setVisible(false);
     }
