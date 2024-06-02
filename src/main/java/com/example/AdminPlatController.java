@@ -14,7 +14,6 @@ public class AdminPlatController extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // Récupération de l'image depuis la base de données
         Image image = getImageFromDatabase();
 
         // Affichage de l'image
