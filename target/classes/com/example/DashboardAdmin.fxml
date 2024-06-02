@@ -73,7 +73,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" prefHeight="715.0" prefWidth="137.0" style="-fx-background-color: White;" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
+      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" onMouseExited="#hidemenu" prefHeight="715.0" prefWidth="137.0" style="-fx-background-color: White;" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
          <children>
             <VBox prefHeight="700.0" prefWidth="210.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                <children>
@@ -157,7 +157,7 @@
       </AnchorPane>
       <AnchorPane onMouseEntered="#showmenu" onMouseExited="#hidemenu" prefHeight="713.0" prefWidth="56.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutY="-0.8" prefHeight="716.0" prefWidth="56.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="-1.0">
+            <VBox alignment="TOP_CENTER" layoutY="-0.8" onMouseEntered="#showmenu" prefHeight="716.0" prefWidth="56.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="-1.0">
                <children>
                   <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>

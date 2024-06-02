@@ -1,6 +1,6 @@
 package com.example;
 
-
+import java.util.LinkedList;
 import java.sql.*;
 
 public class Commande {
@@ -28,6 +28,27 @@ public class Commande {
       }
    }
 
+   public LinkedList<Commande> consulterCommandes() {
+      // Implémentation de la méthode consulterCommandes
+      try {
+         // Exécuter une requête SQL pour consulter toutes les commandes
+         String sql = "SELECT * FROM commande";
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery(sql);
+         LinkedList<Commande> commandes = new LinkedList<>();
+         while (resultSet.next()) {
+            Commande commande = new Commande();
+            commande.idCommande = resultSet.getInt("idCommande");
+            commande.note = resultSet.getString("note");
+            commande.status = resultSet.getBoolean("status");
+            commandes.add(commande);
+         }
+         return commandes;
+      } catch (SQLException e) {
+         e.printStackTrace();
+         return null;
+      }
+   }
 
    public boolean consulterCommande(int idCommande) {
       // Implémentation de la méthode consulterCommande
