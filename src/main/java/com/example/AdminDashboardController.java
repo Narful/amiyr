@@ -35,6 +35,8 @@ public class AdminDashboardController {
 
     @FXML
     private BarChart<String, Number> platChart;
+    private BarChart<String, Number> revenuPlatChart;
+
 
     @FXML
     private StackedBarChart<String, Number> stackedBarChart;
@@ -57,7 +59,7 @@ public class AdminDashboardController {
             e.printStackTrace();
         }
     }
-
+/*
     @FXML
     void forMonth(ActionEvent event) {
         // Réinitialiser les dates pour le mois actuel
@@ -105,7 +107,7 @@ public class AdminDashboardController {
     }
 
     @FXML
-    void initialize() {
+    private void initialize() {
         try {
             // Récupérer le mois actuel
             Calendar cal = Calendar.getInstance();
@@ -116,8 +118,7 @@ public class AdminDashboardController {
             Date dateDebut = cal.getTime(); // Convertir en objet Date
 
             // Créer la date de fin pour le mois actuel
-            cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH)); // Mettre le jour au dernier
-            // jour du mois
+            cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH)); // Mettre le jour au dernier jour du mois
             Date dateFin = cal.getTime(); // Convertir en objet Date
 
             // Appel des méthodes pour peupler les graphiques
@@ -321,5 +322,5 @@ public class AdminDashboardController {
 
         return result;
     }
-
+*/
 }
