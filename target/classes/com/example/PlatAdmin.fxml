@@ -15,26 +15,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AdminPlatController">
+<AnchorPane prefHeight="790.0" prefWidth="1550.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AdminPlatController">
    <children>
-      <AnchorPane layoutX="44.0" prefHeight="722.0" prefWidth="942.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="44.0" prefHeight="791.0" prefWidth="1493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Pane layoutX="-0.8" layoutY="-0.8" prefHeight="723.0" prefWidth="943.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
+            <Pane layoutX="-548.0" layoutY="-4.0" prefHeight="726.0" prefWidth="1490.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
                <children>
-                  <HBox alignment="CENTER" layoutY="24.0" prefHeight="58.0" prefWidth="944.0">
+                  <HBox alignment="CENTER" layoutY="24.0" prefHeight="58.0" prefWidth="1494.0">
                      <children>
                         <Label text="Mes plats">
                            <font>
                               <Font name="Arial" size="24.0" />
                            </font>
                            <HBox.margin>
-                              <Insets right="580.0" />
+                              <Insets right="1100.0" />
                            </HBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: #780000;" text="Ajouter un plat" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" style="-fx-background-color: #780000;" text="Ajouter un plat" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="30.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
                         </Button>
                         <FontAwesomeIcon glyphName="BELL" size="2em">
                            <HBox.margin>
@@ -42,13 +45,13 @@
                            </HBox.margin></FontAwesomeIcon>
                      </children>
                   </HBox>
-                  <TextField layoutX="38.0" layoutY="96.0" prefHeight="41.0" prefWidth="865.0">
+                  <TextField layoutX="38.0" layoutY="96.0" prefHeight="58.0" prefWidth="1421.0">
                      <padding>
                         <Insets left="35.0" />
                      </padding>
                   </TextField>
-                  <FontAwesomeIcon glyphName="SEARCH" layoutX="53.0" layoutY="120.0" />
-                  <Label layoutX="45.0" layoutY="176.0" text="Repas">
+                  <FontAwesomeIcon glyphName="SEARCH" layoutX="54.0" layoutY="131.0" size="1.5em" />
+                  <Label layoutX="45.0" layoutY="189.0" text="Repas">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
