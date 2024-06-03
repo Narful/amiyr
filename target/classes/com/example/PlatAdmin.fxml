@@ -17,13 +17,13 @@
 
 <AnchorPane prefHeight="790.0" prefWidth="1530.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AdminPlatController">
    <children>
-      <AnchorPane layoutX="44.0" prefHeight="791.0" prefWidth="1493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="44.0" prefHeight="791.0" prefWidth="1330.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Pane layoutX="-548.0" layoutY="-4.0" prefHeight="726.0" prefWidth="1490.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
+            <Pane layoutX="119.2" layoutY="-4.0" prefHeight="795.0" prefWidth="1375.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
                <children>
-                  <HBox alignment="CENTER" layoutY="24.0" prefHeight="58.0" prefWidth="1494.0">
+                  <HBox alignment="CENTER" layoutY="24.0" prefHeight="58.0" prefWidth="1304.0">
                      <children>
-                        <Label text="Mes plats">
+                        <Label prefHeight="27.0" prefWidth="276.0" text="Mes plats">
                            <font>
                               <Font name="Arial" size="24.0" />
                            </font>
@@ -45,7 +45,7 @@
                            </HBox.margin></FontAwesomeIcon>
                      </children>
                   </HBox>
-                  <TextField layoutX="38.0" layoutY="96.0" prefHeight="47.0" prefWidth="1421.0">
+                  <TextField layoutX="38.0" layoutY="96.0" prefHeight="47.0" prefWidth="1266.0">
                      <padding>
                         <Insets left="35.0" />
                      </padding>
@@ -61,7 +61,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" prefHeight="715.0" prefWidth="137.0" style="-fx-background-color: White;" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
+      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" prefHeight="791.0" prefWidth="138.0" style="-fx-background-color: White;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
          <children>
             <VBox prefHeight="700.0" prefWidth="210.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                <children>
@@ -136,7 +136,7 @@
                         </JFXButton>
                      </children>
                      <VBox.margin>
-                        <Insets top="340.0" />
+                        <Insets top="420.0" />
                      </VBox.margin>
                   </VBox>
                </children>
@@ -145,7 +145,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="713.0" prefWidth="56.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutY="-0.8" prefHeight="716.0" prefWidth="56.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="-1.0">
+            <VBox alignment="TOP_CENTER" layoutY="-76.0" prefHeight="791.0" prefWidth="56.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="-76.0">
                <children>
                   <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -187,7 +187,7 @@
                         <Insets top="12.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER" spacing="15.0">
+                  <VBox alignment="CENTER" prefHeight="85.0" prefWidth="56.0" spacing="15.0">
                      <children>
                         <FontAwesomeIcon fill="#c7c7c7" glyphName="GEAR" size="2em">
                            <cursor>
@@ -204,7 +204,7 @@
                         </FontAwesomeIcon>
                      </children>
                      <VBox.margin>
-                        <Insets top="340.0" />
+                        <Insets top="420.0" />
                      </VBox.margin>
                   </VBox>
                </children>
