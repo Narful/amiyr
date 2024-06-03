@@ -41,9 +41,8 @@
                       <yAxis>
                           <NumberAxis label="Revenus" side="LEFT" />
                       </yAxis>
-                      <!-- Ajustements pour la hauteur des colonnes -->
-                      <barGap>1</barGap> <!-- Espace entre les colonnes -->
-                      <categoryGap>1</categoryGap> <!-- Espace entre les catégories (étiquettes sur l'axe des abscisses) -->
+                      <barGap>1</barGap>
+                      <categoryGap>1</categoryGap>
                   </BarChart>
 
                   <StackedBarChart fx:id="stackedBarChart" layoutX="318.0" layoutY="179.0" prefHeight="284.0" prefWidth="300.0">

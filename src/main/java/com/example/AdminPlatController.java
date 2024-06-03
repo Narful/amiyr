@@ -1,51 +1,51 @@
 package com.example;
 
-import javafx.fxml.FXML;
+import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
-import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 import java.sql.*;
 
-public class AdminPlatController {
+public class AdminPlatController extends Application {
 
-    @FXML
-    private ImageView imgp;
+    @Override
+    public void start(Stage primaryStage) {
+        Image image = getImageFromDatabase();
 
+        // Affichage de l'image
+        ImageView imageView = new ImageView(image);
+        StackPane root = new StackPane(imageView);
+        Scene scene = new Scene(root, 600, 400);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Image from Database");
+        primaryStage.show();
+    }
 
-    @FXML
-    private AnchorPane menuitems;
-
-
-    void test() {
+    // Méthode pour récupérer l'image depuis la base de données
+    private Image getImageFromDatabase() {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT photos FROM plat WHERE idPlat = 1");
-
-            if (resultSet.next()) {
-                // Récupérer le BLOB de la colonne photos
-                InputStream inputStream = resultSet.getBlob("photos").getBinaryStream();
-                // Créer une instance de Image à partir du InputStream
-                Image image = new Image(inputStream);
-
-                // Afficher l'image dans l'ImageView
-                imgp.setImage(image);
+            String query = "SELECT photo FROM plat WHERE idPlat = 1";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    Blob blob = resultSet.getBlob("photo");
+                    if (blob != null) {
+                        byte[] imageData = blob.getBytes(1, (int) blob.length());
+                        return new Image(new ByteArrayInputStream(imageData));
+                    }
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    @FXML
-    void hidemenu(MouseEvent event) {
-
+    public static void main(String[] args) {
+        launch(args);
     }
-
-    @FXML
-    void showmenu(MouseEvent event) {
-
-    }
-
 }
