@@ -10,8 +10,11 @@ public class AdminPlatController {
 
     @FXML
     private ImageView imgp;
+    
+
 
     public void initialize() {
+
         Image image = getImageFromDatabase();
         if (image != null) {
             imgp.setImage(image);

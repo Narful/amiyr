@@ -4,9 +4,12 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,53 +18,61 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1530.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AdminPlatController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AdminDashboardController">
    <children>
-      <AnchorPane layoutX="44.0" prefHeight="791.0" prefWidth="1330.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="44.0" prefHeight="722.0" prefWidth="942.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Pane layoutX="119.2" layoutY="-4.0" prefHeight="795.0" prefWidth="1375.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
+            <Pane layoutX="-0.8" layoutY="-0.8" prefHeight="723.0" prefWidth="943.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
                <children>
-                  <HBox alignment="CENTER" layoutY="24.0" prefHeight="58.0" prefWidth="1304.0">
+                  <HBox alignment="CENTER" layoutY="24.0" prefHeight="58.0" prefWidth="944.0" spacing="650.0">
                      <children>
-                        <Label prefHeight="27.0" prefWidth="1042.0" text="Mes plats">
+                        <Label text="Tableau de bord">
                            <font>
                               <Font name="Arial" size="24.0" />
                            </font>
-                           <HBox.margin>
-                              <Insets left="35.0" />
-                           </HBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" style="-fx-background-color: #780000;" text="Ajouter un plat" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets right="30.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Arial Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <FontAwesomeIcon glyphName="BELL" size="2em">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin></FontAwesomeIcon>
+                        <FontAwesomeIcon glyphName="BELL" size="2em" />
                      </children>
                   </HBox>
-                  <TextField layoutX="38.0" layoutY="96.0" prefHeight="47.0" prefWidth="1266.0">
-                     <padding>
-                        <Insets left="35.0" />
-                     </padding>
-                  </TextField>
-                  <FontAwesomeIcon glyphName="SEARCH" layoutX="54.0" layoutY="125.0" size="1.5em" />
-                  <Label layoutX="45.0" layoutY="176.0" text="Repas">
-                     <font>
-                        <Font name="Arial" size="24.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="imgp" fitHeight="200.0" fitWidth="272.0" layoutX="45.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" />
+                  <BarChart fx:id="platChart" layoutY="179.0" prefHeight="284.0" prefWidth="300.0">
+                      <xAxis>
+                          <CategoryAxis side="BOTTOM" tickLabelRotation="90" />
+                      </xAxis>
+                      <yAxis>
+                          <NumberAxis label="Revenus" side="LEFT" />
+                      </yAxis>
+                      <barGap>1</barGap>
+                      <categoryGap>1</categoryGap>
+                  </BarChart>
+
+                  <StackedBarChart fx:id="stackedBarChart" layoutX="318.0" layoutY="179.0" prefHeight="284.0" prefWidth="300.0">
+                      <xAxis>
+                          <CategoryAxis side="BOTTOM" />
+                      </xAxis>
+                      <yAxis>
+                          <NumberAxis side="LEFT" />
+                      </yAxis>
+                  </StackedBarChart>
+
+                  <Pane layoutX="640.0" layoutY="108.0" prefHeight="491.0" prefWidth="265.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+                     <children>
+                        <Button layoutX="45.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#toPlat" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #780000;" text="Voir mon menu" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Button layoutX="62.0" layoutY="98.0" mnemonicParsing="false" onAction="#forMonth" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #003049;" text="Ce mois" textFill="WHITE" />
+                  <Button layoutX="181.0" layoutY="98.0" mnemonicParsing="false" onAction="#forWeek" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #ffffff; -fx-border-color: #003049; -fx-border-width: 0.5; -fx-border-radius: 5;" text="Cette semaine" textFill="#003049" />
                </children>
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" prefHeight="791.0" prefWidth="138.0" style="-fx-background-color: White;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
+      <AnchorPane fx:id="menuitems" layoutX="55.2" layoutY="1.0" onMouseExited="#hidemenu" prefHeight="715.0" prefWidth="137.0" style="-fx-background-color: White;" visible="false" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0">
          <children>
             <VBox prefHeight="700.0" prefWidth="210.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                <children>
@@ -84,7 +95,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="58.0" prefHeight="38.0" prefWidth="179.0" ripplerFill="#edf2f4" text="Plats" textFill="#919191">
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="58.0" onMouseClicked="#toPlat" prefHeight="38.0" prefWidth="179.0" ripplerFill="#edf2f4" text="Plats" textFill="#919191">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -136,24 +147,24 @@
                         </JFXButton>
                      </children>
                      <VBox.margin>
-                        <Insets top="420.0" />
+                        <Insets top="340.0" />
                      </VBox.margin>
                   </VBox>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="713.0" prefWidth="56.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0">
+      <AnchorPane onMouseEntered="#showmenu" onMouseExited="#hidemenu" prefHeight="713.0" prefWidth="56.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutY="-76.0" prefHeight="791.0" prefWidth="56.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="-76.0">
+            <VBox alignment="TOP_CENTER" layoutY="-0.8" onMouseEntered="#showmenu" prefHeight="716.0" prefWidth="56.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="-1.0">
                <children>
-                  <ImageView fx:id="logoAmiyr" fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="5.0" top="10.0" />
-                     </VBox.margin>
+                  <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/logo.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets left="5.0" top="10.0" />
+                     </VBox.margin>
                   </ImageView>
                   <VBox alignment="CENTER" spacing="20.0">
                      <children>
@@ -162,7 +173,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </FontAwesomeIcon>
-                        <FontAwesomeIcon fill="#c7c7c7" glyphName="CUTLERY" size="2em">
+                        <FontAwesomeIcon fill="#c7c7c7" glyphName="CUTLERY" onMouseClicked="#toPlat" size="2em">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -187,7 +198,7 @@
                         <Insets top="12.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="85.0" prefWidth="56.0" spacing="15.0">
+                  <VBox alignment="CENTER" spacing="15.0">
                      <children>
                         <FontAwesomeIcon fill="#c7c7c7" glyphName="GEAR" size="2em">
                            <cursor>
@@ -204,7 +215,7 @@
                         </FontAwesomeIcon>
                      </children>
                      <VBox.margin>
-                        <Insets top="420.0" />
+                        <Insets top="340.0" />
                      </VBox.margin>
                   </VBox>
                </children>

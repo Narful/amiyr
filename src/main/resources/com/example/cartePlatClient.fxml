@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0" prefWidth="197.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="247.0" prefWidth="197.0">
+         <children>
+            <ImageView fx:id="imagePlat" fitHeight="141.0" fitWidth="197.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox prefHeight="50.0" prefWidth="230.0">
+               <children>
+                  <Label fx:id="nomPlatLabel" prefHeight="20.0" prefWidth="187.0" text="Nom Plat">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="categoriePlatLabel" prefHeight="18.0" prefWidth="186.0" text="Categorie">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="ratingPlatLabel" prefHeight="43.0" prefWidth="108.0" text="rating">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="prixPlatLabel" prefHeight="42.0" prefWidth="111.0" text="prixMad" />
+               </children>
+            </HBox>
+            <Button fx:id="addCartBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0">
+               <graphic>
+                  <FontAwesomeIcon glyphName="SHOPPING_CART" size="1.5em" />
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
