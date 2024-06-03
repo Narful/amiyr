@@ -23,12 +23,12 @@
                <children>
                   <HBox alignment="CENTER" layoutY="24.0" prefHeight="58.0" prefWidth="1304.0">
                      <children>
-                        <Label prefHeight="27.0" prefWidth="276.0" text="Mes plats">
+                        <Label prefHeight="27.0" prefWidth="1042.0" text="Mes plats">
                            <font>
                               <Font name="Arial" size="24.0" />
                            </font>
                            <HBox.margin>
-                              <Insets right="1100.0" />
+                              <Insets left="35.0" />
                            </HBox.margin>
                         </Label>
                         <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" style="-fx-background-color: #780000;" text="Ajouter un plat" textFill="WHITE">
@@ -147,13 +147,13 @@
          <children>
             <VBox alignment="TOP_CENTER" layoutY="-76.0" prefHeight="791.0" prefWidth="56.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="-76.0">
                <children>
-                  <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/logo.png" />
-                     </image>
+                  <ImageView fx:id="logoAmiyr" fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets left="5.0" top="10.0" />
                      </VBox.margin>
+                     <image>
+                        <Image url="@img/logo.png" />
+                     </image>
                   </ImageView>
                   <VBox alignment="CENTER" spacing="20.0">
                      <children>
