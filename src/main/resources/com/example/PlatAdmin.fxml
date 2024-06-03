@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1550.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AdminPlatController">
+<AnchorPane prefHeight="790.0" prefWidth="1530.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AdminPlatController">
    <children>
       <AnchorPane layoutX="44.0" prefHeight="791.0" prefWidth="1493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -45,13 +45,13 @@
                            </HBox.margin></FontAwesomeIcon>
                      </children>
                   </HBox>
-                  <TextField layoutX="38.0" layoutY="96.0" prefHeight="58.0" prefWidth="1421.0">
+                  <TextField layoutX="38.0" layoutY="96.0" prefHeight="47.0" prefWidth="1421.0">
                      <padding>
                         <Insets left="35.0" />
                      </padding>
                   </TextField>
-                  <FontAwesomeIcon glyphName="SEARCH" layoutX="54.0" layoutY="131.0" size="1.5em" />
-                  <Label layoutX="45.0" layoutY="189.0" text="Repas">
+                  <FontAwesomeIcon glyphName="SEARCH" layoutX="54.0" layoutY="125.0" size="1.5em" />
+                  <Label layoutX="45.0" layoutY="176.0" text="Repas">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
