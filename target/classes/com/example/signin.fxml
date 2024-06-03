@@ -12,48 +12,48 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SigninController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="790.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SigninController">
     <children>
-      <Pane prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: #780000;">
+      <Pane prefHeight="790.0" prefWidth="775.0" style="-fx-background-color: #780000;">
          <children>
-            <Label layoutX="125.0" layoutY="257.0" text="Welcome Back" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="269.0" layoutY="262.0" text="Welcome Back" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Arial" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="41.0" layoutY="257.0" prefHeight="158.0" prefWidth="418.0" text="Connectez-vous en tant que client, cuisinier ou administrateur et accédez à votre compte ou gérez vos informations." textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="214.0" layoutY="624.0" text="AMIYR 1.0" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="366.0" layoutY="615.0" text="AMIYR 1.0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Bodoni MT Black" size="12.0" />
                </font>
             </Label>
+            <Label layoutX="184.0" layoutY="267.0" prefHeight="158.0" prefWidth="418.0" text="Connectez-vous en tant que client, cuisinier ou administrateur et accédez à votre compte ou gérez vos informations." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: #ffffff;">
+        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="790.0" prefWidth="775.0" spacing="20.0" style="-fx-background-color: #ffffff;">
             <children>
-                <Label text="Connexion">
+                <Label prefHeight="36.0" prefWidth="175.0" text="Connexion">
                     <font>
                         <Font name="Arial Bold" size="30.0" />
                     </font>
                     <VBox.margin>
-                        <Insets left="80.0" />
+                        <Insets left="160.0" />
                     </VBox.margin>
                 </Label>
-                <TextField id="email" fx:id="email" focusTraversable="false" prefHeight="41.0" prefWidth="355.0" promptText="Email" styleClass="text-input">
+                <TextField id="email" fx:id="email" focusTraversable="false" prefHeight="42.0" prefWidth="416.0" promptText="Email" styleClass="text-input">
                     <VBox.margin>
-                        <Insets left="80.0" right="80.0" top="20.0" />
+                        <Insets left="160.0" right="160.0" top="20.0" />
                     </VBox.margin>
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
                 </TextField>
-                <PasswordField id="pwd" fx:id="pwd" focusTraversable="false" prefHeight="41.0" prefWidth="355.0" promptText="Mot de passe">
+                <PasswordField id="pwd" fx:id="pwd" focusTraversable="false" prefHeight="42.0" prefWidth="489.0" promptText="Mot de passe">
                     <VBox.margin>
-                        <Insets left="80.0" right="80.0" />
+                        <Insets left="160.0" right="160.0" />
                     </VBox.margin>
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -61,7 +61,7 @@
                 </PasswordField>
             <Pane prefHeight="31.0" prefWidth="424.0" style="-fx-background-color: white;">
                <children>
-                  <HBox fx:id="errorBox" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="500.0" spacing="5.0">
+                  <HBox fx:id="errorBox" alignment="CENTER_LEFT" layoutX="80.0" prefHeight="31.0" prefWidth="420.0" spacing="5.0">
                      <children>
                         <FontAwesomeIcon fill="#d11e1e" glyphName="EXCLAMATION_CIRCLE">
                            <HBox.margin>
@@ -78,7 +78,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="errorBox1" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="500.0" spacing="5.0">
+                  <HBox fx:id="errorBox1" alignment="CENTER_LEFT" layoutX="83.0" prefHeight="31.0" prefWidth="417.0" spacing="5.0">
                      <children>
                         <FontAwesomeIcon fill="#d11e1e" glyphName="EXCLAMATION_CIRCLE">
                            <HBox.margin>
@@ -90,7 +90,7 @@
                               <Insets />
                            </HBox.margin>
                            <font>
-                              <Font name="Arial" size="12.0" />
+                              <Font name="Arial" size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -100,9 +100,9 @@
                   <Insets left="80.0" right="80.0" top="-15.0" />
                </VBox.margin>
             </Pane>
-                <Button id="btn_connect" mnemonicParsing="false" onAction="#onclickSignin" prefHeight="41.0" prefWidth="355.0" style="-fx-background-color: #780000; -fx-border-color: #780000;" text="Se connecter" textFill="WHITE">
+                <Button id="btn_connect" mnemonicParsing="false" onAction="#onclickSignin" prefHeight="42.0" prefWidth="614.0" style="-fx-background-color: #780000; -fx-border-color: #780000;" text="Se connecter" textFill="WHITE">
                     <VBox.margin>
-                        <Insets left="80.0" right="80.0" top="-15.0" />
+                        <Insets left="160.0" right="160.0" top="-15.0" />
                     </VBox.margin>
                <font>
                   <Font name="Arial Bold" size="14.0" />
@@ -116,18 +116,18 @@
                   <Font name="Arial" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" left="185.0" />
+                  <Insets bottom="20.0" left="330.0" />
                </VBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Button fx:id="ToSignup" mnemonicParsing="false" onAction="#sendtosignup" prefHeight="41.0" prefWidth="355.0" style="-fx-background-color: #ffffff; -fx-border-color: #404040; -fx-border-radius: 3;" text="Créer un nouveau compte" textFill="#404040">
+            <Button fx:id="ToSignup" mnemonicParsing="false" onAction="#sendtosignup" prefHeight="42.0" prefWidth="622.0" style="-fx-background-color: #ffffff; -fx-border-color: #404040; -fx-border-radius: 3;" text="Créer un nouveau compte" textFill="#404040">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets left="80.0" right="80.0" />
+                  <Insets left="160.0" right="160.0" />
                </VBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
