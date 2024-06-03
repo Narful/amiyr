@@ -1,28 +1,21 @@
 package com.example;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-
 import java.io.ByteArrayInputStream;
 import java.sql.*;
 
-public class AdminPlatController extends Application {
+public class AdminPlatController {
 
-    @Override
-    public void start(Stage primaryStage) {
+    @FXML
+    private ImageView imgp;
+
+    public void initialize() {
         Image image = getImageFromDatabase();
-
-        // Affichage de l'image
-        ImageView imageView = new ImageView(image);
-        StackPane root = new StackPane(imageView);
-        Scene scene = new Scene(root, 600, 400);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Image from Database");
-        primaryStage.show();
+        if (image != null) {
+            imgp.setImage(image);
+        }
     }
 
     // Méthode pour récupérer l'image depuis la base de données
@@ -43,9 +36,5 @@ public class AdminPlatController extends Application {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
