@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AdminPlatController">
+   <children>
+      <Label layoutX="244.0" layoutY="303.0" prefHeight="29.0" prefWidth="60.0" text="Quantité" />
+      <TextField fx:id="nom" layoutX="244.0" layoutY="86.0" prefHeight="26.0" prefWidth="199.0" promptText="Nom" />
+      <TextArea fx:id="description" layoutX="244.0" layoutY="129.0" prefHeight="160.0" prefWidth="415.0" promptText="Description" />
+      <ComboBox fx:id="categorie" layoutX="459.0" layoutY="86.0" prefHeight="26.0" prefWidth="199.0" promptText="Catégorie" />
+      <Spinner fx:id="qte" editable="true" layoutX="304.0" layoutY="305.0" />
+      <TextField fx:id="prix" layoutX="480.0" layoutY="304.0" prefHeight="26.0" prefWidth="178.0" promptText="Prix" />
+      <AnchorPane fx:id="btnAjouter" prefHeight="42.0" prefWidth="700.0" style="-fx-background-color: gray;">
+         <children>
+            <Label layoutX="14.0" layoutY="13.0" prefHeight="18.0" prefWidth="126.0" text="Ajouter un plat" textFill="WHITE" />
+            <BottomNavigationButton contentDisplay="CENTER" layoutX="662.0" layoutY="1.0" prefHeight="42.0" prefWidth="40.0" style="-fx-background-color: gray;" text="X" textFill="WHITE" textOverrun="LEADING_ELLIPSIS" />
+         </children></AnchorPane>
+      <JFXButton layoutX="243.0" layoutY="353.0" onAction="#AjouterPlat" prefHeight="26.0" prefWidth="415.0" style="-fx-background-color: black;" text="Ajouter" textFill="WHITE" />
+      <ImageView fx:id="imgAdd" fitHeight="160.0" fitWidth="157.0" layoutX="38.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane layoutX="81.0" layoutY="233.0" prefHeight="30.0" prefWidth="60.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#addIMG" prefHeight="30.0" prefWidth="60.0" />
+            <FontAwesomeIcon glyphName="PLUS" layoutX="25.0" layoutY="19.714279174804688" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

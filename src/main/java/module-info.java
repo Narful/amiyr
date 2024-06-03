@@ -6,6 +6,9 @@ module com.example {
     requires fontawesomefx;
     requires javafx.graphics;
     requires com.jfoenix;
+    requires kernel;
+    requires layout;
+    requires io;
 
     opens com.example to javafx.fxml;
 
