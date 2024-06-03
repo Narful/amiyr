@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="244.0" layoutY="303.0" prefHeight="29.0" prefWidth="60.0" text="Quantité" />
+      <TextField layoutX="244.0" layoutY="86.0" prefHeight="26.0" prefWidth="199.0" promptText="Nom" />
+      <TextArea layoutX="244.0" layoutY="129.0" prefHeight="160.0" prefWidth="415.0" promptText="Description" />
+      <ComboBox layoutX="459.0" layoutY="86.0" prefHeight="26.0" prefWidth="199.0" promptText="Catégorie" />
+      <Spinner editable="true" layoutX="304.0" layoutY="305.0" />
+      <TextField layoutX="480.0" layoutY="304.0" prefHeight="26.0" prefWidth="178.0" promptText="Prix" />
+      <AnchorPane prefHeight="42.0" prefWidth="700.0" style="-fx-background-color: gray;">
+         <children>
+            <Label layoutX="14.0" layoutY="13.0" prefHeight="18.0" prefWidth="126.0" text="Ajouter un plat" textFill="WHITE" />
+            <BottomNavigationButton contentDisplay="CENTER" layoutX="662.0" layoutY="1.0" prefHeight="42.0" prefWidth="40.0" style="-fx-background-color: gray;" text="X" textFill="WHITE" textOverrun="LEADING_ELLIPSIS" />
+         </children></AnchorPane>
+      <JFXButton layoutX="243.0" layoutY="353.0" prefHeight="26.0" prefWidth="415.0" style="-fx-background-color: black;" text="Ajouter" textFill="WHITE" />
+      <ImageView fitHeight="160.0" fitWidth="157.0" layoutX="38.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
