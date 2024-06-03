@@ -57,7 +57,7 @@
 
                   <Pane layoutX="640.0" layoutY="108.0" prefHeight="491.0" prefWidth="265.0" style="-fx-background-color: white; -fx-background-radius: 20;">
                      <children>
-                        <Button layoutX="45.0" layoutY="428.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #780000;" text="Voir mon menu" textFill="WHITE">
+                        <Button layoutX="45.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#toPlat" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #780000;" text="Voir mon menu" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="14.0" />
                            </font>
