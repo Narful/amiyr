@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1530.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AdminPlatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="790.0" prefWidth="1530.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ClientPlatController">
    <children>
       <AnchorPane layoutX="44.0" prefHeight="791.0" prefWidth="1330.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -31,7 +31,7 @@
                               <Insets left="35.0" />
                            </HBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" style="-fx-background-color: #780000;" text="Ajouter un plat" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" style="-fx-background-color: #780000;" text="Générer PDF" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="30.0" />
                            </HBox.margin>
@@ -56,7 +56,12 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="imgp" fitHeight="200.0" fitWidth="272.0" layoutX="45.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button layoutX="1183.0" layoutY="675.0" mnemonicParsing="false">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="SHOPPING_CART" />
+                     </graphic>
+                  </Button>
+                  <HBox fx:id="menuContainer" layoutX="87.0" layoutY="281.0" prefHeight="219.0" prefWidth="636.0" />
                </children>
             </Pane>
          </children>
@@ -211,5 +216,6 @@
             </VBox>
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="210.0" layoutY="13.0" prefHeight="791.0" prefWidth="1330.0" visible="false" />
    </children>
 </AnchorPane>

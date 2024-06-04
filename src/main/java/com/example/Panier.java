@@ -80,7 +80,7 @@ public class Panier {
             statement.setInt(1, idPanier);
             statement.executeUpdate();
             for (int i = 0; statement.getResultSet().next(); i++) {
-               plats[i].photo = statement.getResultSet().getString(1);
+               //plats[i].photo = statement.getResultSet().getString(1);
                plats[i].nom = statement.getResultSet().getString(2);
                plats[i].prix = statement.getResultSet().getFloat(3);
             }
