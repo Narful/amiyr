@@ -6,11 +6,13 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -18,7 +20,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="790.0" prefWidth="1530.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ClientPlatController">
    <children>
-      <AnchorPane layoutX="44.0" prefHeight="791.0" prefWidth="1330.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="210.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0" visible="false" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Pane layoutX="119.2" layoutY="-4.0" prefHeight="795.0" prefWidth="1375.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
                <children>
@@ -256,5 +258,71 @@
          </children>
       </AnchorPane>
       <AnchorPane layoutX="210.0" layoutY="13.0" prefHeight="791.0" prefWidth="1330.0" visible="false" />
+      <AnchorPane layoutX="220.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0">
+         <children>
+            <Label layoutX="107.0" layoutY="72.0" text="Etat de votre commande">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ProgressBar layoutX="106.0" layoutY="131.0" prefHeight="30.0" prefWidth="1110.0" progress="0.0" />
+            <Label layoutX="1112.0" layoutY="182.0" text="10 min restants">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <VBox layoutX="445.0" layoutY="237.0" prefHeight="361.0" prefWidth="494.0" />
+            <Button layoutX="660.0" layoutY="704.0" mnemonicParsing="false" text="Annuler">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="538.0" layoutY="624.0" text="Votre commande est tourjours en cours de validation">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <BorderPane disable="true" layoutX="400.0" layoutY="171.0" prefHeight="511.0" prefWidth="563.0" style="-fx-background-color: grey;">
+               <top>
+                  <Label text="Confirmation" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+               </top>
+               <center>
+                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Est-ce que vous avez bien reçu votre commande ?">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="80.0" top="200.0" />
+                           </padding>
+                        </Label>
+                        <HBox prefHeight="191.0" prefWidth="563.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Non">
+                                 <HBox.margin>
+                                    <Insets left="100.0" top="80.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" text="Oui">
+                                 <HBox.margin>
+                                    <Insets left="130.0" top="80.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
