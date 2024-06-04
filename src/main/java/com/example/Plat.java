@@ -35,12 +35,13 @@ public class Plat {
          statement = connection.createStatement();
          // Exécuter la requête SQL pour récupérer les noms, catégories, et images des
          // plats
-         resultSet = statement.executeQuery("SELECT nom, categorie, photo, prix FROM plat");
+         resultSet = statement.executeQuery("SELECT idPlat, nom, categorie, photo, prix FROM plat");
 
          // Parcourir les résultats de la requête
          while (resultSet.next()) {
             // Créer un nouvel objet Plat et définir ses attributs
             Plat plat = new Plat();
+            plat.idPlat = resultSet.getInt("idPlat");
             plat.nom = resultSet.getString("nom");
             plat.categorie = resultSet.getString("categorie");
             plat.photo = resultSet.getBytes("photo"); // Récupérer l'image en tant que byte array

@@ -12,6 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0" prefWidth="197.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.CartePlatClientController">
    <children>
+      <Label fx:id="idPlatLabel" text="this contains the ids" visible="false" />
       <VBox prefHeight="247.0" prefWidth="197.0">
          <children>
             <ImageView fx:id="imagePlat" fitHeight="141.0" fitWidth="197.0" pickOnBounds="true" preserveRatio="true" />
@@ -42,7 +43,7 @@
                   <Label fx:id="prixPlatLabel" prefHeight="42.0" prefWidth="111.0" text="prixMad" />
                </children>
             </HBox>
-            <Button fx:id="addCartBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0">
+            <Button fx:id="addCartBtn" mnemonicParsing="false" onMouseClicked="#ajouterAuPanier" prefHeight="26.0" prefWidth="198.0">
                <graphic>
                   <FontAwesomeIcon glyphName="SHOPPING_CART" size="1.5em" />
                </graphic>

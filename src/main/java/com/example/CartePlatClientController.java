@@ -1,5 +1,8 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,16 +28,14 @@ public class CartePlatClientController {
     @FXML
     private Label ratingPlatLabel;
 
-    public void setCardData(String name, String categorie, Double prix){
-        //imagePlat.setImage(imagePlatdata);
-        nomPlatLabel.setText(name);
-        categoriePlatLabel.setText(categorie);
-        prixPlatLabel.setText(prix + "Dh");
+    @FXML
+    private Label idPlatLabel;
 
-    }
+    
 
 
-    public void setPlat(String nomPlat, String categoriePlat, byte[] image,float prix) {
+    public void setPlat(int idPlat, String nomPlat, String categoriePlat, byte[] image,float prix) {
+        idPlatLabel.setText(idPlat + "");
         nomPlatLabel.setText(nomPlat);
         categoriePlatLabel.setText(categoriePlat);
         prixPlatLabel.setText(prix + "Dh");
@@ -45,6 +46,24 @@ public class CartePlatClientController {
             imagePlat.setPreserveRatio(false);
             imagePlat.setSmooth(true);
         }
+    }
+
+    public Plat returnPlatObj(){
+        //List<Plat> platlist = new ArrayList<>();
+        int idPlat = Integer.parseInt(idPlatLabel.getText());
+        String nomPlat = nomPlatLabel.getText();
+        String categoriePlat = categoriePlatLabel.getText();
+        float prixPlat = Float.parseFloat(prixPlatLabel.getText().replace("Dh", ""));
+        
+        Plat plat = new Plat();
+        plat.idPlat = idPlat;
+        plat.nom = nomPlat;
+        plat.prix = prixPlat;
+        //platlist.add(plat);
+        
+        ClientPlatController clientPlatController = new ClientPlatController();
+        clientPlatController.addPanier(plat);
+        return plat;
     }
 
 

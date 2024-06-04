@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
@@ -15,6 +16,9 @@ public class ClientPlatController {
 
     @FXML
     private HBox menuContainer;
+
+    @FXML
+    private VBox panierContainer;
 
     @FXML
     private AnchorPane menuitems;
@@ -37,7 +41,7 @@ public class ClientPlatController {
                 // Obtenir le contrôleur associé au fichier FXML
                 CartePlatClientController controller = loader.getController();
                 // Passer les données du plat au contrôleur de la carte
-                controller.setPlat(p.nom, p.categorie, p.photo, p.prix);
+                controller.setPlat(p.idPlat,p.nom, p.categorie, p.photo, p.prix);
 
                 // Ajouter le node au HBoxContainer
                 menuContainer.getChildren().add(cartePlatNode);
@@ -50,6 +54,13 @@ public class ClientPlatController {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void addPanier(Plat plat){
+        
+        
+        //!! ghadi nakhdo l'objet plat ou n'ajoutiwh fl HBox dial lpanier 
+
     }
 
 }
