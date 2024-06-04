@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class SignupController {
 
@@ -40,6 +41,12 @@ public class SignupController {
     private Label condition;
     @FXML
     private Button ToSignin;
+    @FXML
+    private Label errorLabelEmail;
+    @FXML
+    private Label errorLabelInvalidDomain;
+
+
 
     public void initialize() {
         // Define the colors for normal state
@@ -69,6 +76,13 @@ public class SignupController {
 
         hideErrorMessages();
     }
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+            Pattern.CASE_INSENSITIVE);
+
+    private boolean isValidEmail(String email) {
+        return EMAIL_PATTERN.matcher(email).find();
+    }
 
     @FXML
     void onclickSignup(ActionEvent event) {
@@ -80,7 +94,12 @@ public class SignupController {
             return;
         }
 
-        if (Utilisateur.CheckEmail(email.getText())) {
+        if (!isValidEmail(email.getText())) {
+            errorLabelEmail.setVisible(true);
+            return;
+        }
+
+        if (Utilisateur.checkEmail(email.getText())) {
             errorBoxEmail.setVisible(true);
             return;
         }
@@ -122,7 +141,6 @@ public class SignupController {
             System.out.println("Le rôle spécifié n'est pas valide.");
         }
     }
-
 
 
 

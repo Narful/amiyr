@@ -24,18 +24,26 @@ public class Utilisateur {
    public static String motDePasse;
    public static String role;
 
-   public static Boolean CheckEmail(String email) {
+
+   public static boolean checkEmailDomain(String email) {
+      // Vérifier si le domaine de l'email est valide
+      return email.endsWith("@hotmail.com") || email.endsWith("@outlook.com") || email.endsWith("@uir.ac.ma") || email.endsWith("@gmail.com");
+   }
+
+   public static boolean checkEmail(String email) {
       try (Connection connection = DatabaseConnection.getConnection()) {
          String query = "SELECT * FROM utilisateur WHERE email = ?";
          try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);
-            return statement.executeQuery().next();
+            try (ResultSet resultSet = statement.executeQuery()) {
+               return resultSet.next(); // True if email exists, false otherwise
+            }
          }
       } catch (SQLException e) {
          e.printStackTrace();
          return false;
       }
-   } // Vérifier si l'email existe déjà dans la base de données
+   }// Vérifier si l'email existe déjà dans la base de données
 
    public Boolean modifierCompte(int idCpt, String nom, String prenom, String email, String motDePasse) {
       try (Connection connection = DatabaseConnection.getConnection()) {

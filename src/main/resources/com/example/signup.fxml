@@ -47,6 +47,11 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </TextField>
+                        <Label fx:id="errorLabelEmail" text="L'email saisi est invalide" textFill="red" visible="false">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
                         <SplitMenuButton fx:id="profil" mnemonicParsing="false" prefHeight="42.0" prefWidth="434.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: #dfdfdf;" text="Choisir un profil">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#handleMenuItemClick" text="Admin" />
@@ -70,7 +75,7 @@
                   </VBox>
                   <AnchorPane>
                      <children>
-                        <Label fx:id="condition" layoutX="2.0" lineSpacing="3.0" prefHeight="32.0" prefWidth="430.0" text="Le mot de passe doit contenir au mois 8 caractères, une lettre majuscule, une lettre miniscule et un numéro" textFill="#a9a9a9" wrapText="true">
+                        <Label fx:id="condition" layoutX="2.0" lineSpacing="3.0" prefHeight="32.0" prefWidth="430.0" text="Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule et un numéro" textFill="#a9a9a9" wrapText="true">
                            <font>
                               <Font name="Arial Bold" size="10.0" />
                            </font>
@@ -160,8 +165,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                     
-                              </Button>
+                  </Button>
                </children>
             </VBox>
          </children>
