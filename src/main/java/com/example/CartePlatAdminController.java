@@ -21,7 +21,7 @@ public class CartePlatAdminController {
         categoriePlatLabel.setText(categoriePlat);
         if (image != null && image.length > 0) {
             imagePlat.setImage(Plat.convertToJavaFXImage(image, 200, 150)); // Conversion et affichage de l'image
-            imagePlat.setFitWidth(200);
+            imagePlat.setFitWidth(215);
             imagePlat.setFitHeight(150);
             imagePlat.setPreserveRatio(false);
             imagePlat.setSmooth(true);

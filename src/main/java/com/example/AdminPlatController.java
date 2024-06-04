@@ -5,7 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class AdminPlatController {
     private HBox HBoxContainer;
 
     public void initialize() {
+
         // Charger les plats
         Plat plat = new Plat();
         List<Plat> plats = plat.consulterPlats();

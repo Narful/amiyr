@@ -13,8 +13,8 @@
    <children>
       <VBox prefHeight="296.0" prefWidth="216.0">
          <children>
-            <ImageView fx:id="imagePlat" fitHeight="150" fitWidth="200" preserveRatio="false" smooth="true" />
-            <VBox prefHeight="147.0" prefWidth="216.0">
+            <ImageView fx:id="imagePlat" fitHeight="148.0" fitWidth="215.0" preserveRatio="false" smooth="true" />
+            <VBox prefHeight="159.0" prefWidth="216.0">
                <children>
                   <Label fx:id="nomPlatLabel" prefHeight="20.0" prefWidth="187.0" text="Nom Plat">
                      <font>
@@ -29,7 +29,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <VBox prefHeight="85.0" prefWidth="216.0">
+                  <VBox prefHeight="91.0" prefWidth="216.0">
                      <children>
                         <JFXButton focusTraversable="false" onAction="#AjouterAuMenu" prefHeight="31.0" prefWidth="216.0" style="-fx-background-color: #003049; -fx-border-color: #003049;" text="Ajouter au menu" textFill="WHITE">
                            <font>
@@ -57,7 +57,7 @@
                         </JFXButton>
                      </children>
                      <VBox.margin>
-                        <Insets top="19.0" />
+                        <Insets top="22.0" />
                      </VBox.margin>
                   </VBox>
                </children>
