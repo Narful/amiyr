@@ -95,6 +95,7 @@ public class AdminHistoriqueController {
                 commande.idCommande = resultSet.getInt("idCommande");
                 commande.status = resultSet.getBoolean("status");
                 commande.montant = resultSet.getFloat("montant");
+                System.out.println("Montant: " + commande.montant); // Vérifiez les valeurs ici
                 commandesList.add(commande);
 
             }
