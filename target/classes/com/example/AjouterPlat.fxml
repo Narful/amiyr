@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Button?>
@@ -23,8 +22,8 @@
       <TextField fx:id="prix" layoutX="480.0" layoutY="304.0" prefHeight="26.0" prefWidth="178.0" promptText="Prix" />
       <AnchorPane fx:id="btnAjouter" prefHeight="42.0" prefWidth="700.0" style="-fx-background-color: gray;">
          <children>
+            <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" layoutX="669.0" layoutY="27.0" size="1.5em" wrappingWidth="12.0" />
             <Label layoutX="14.0" layoutY="13.0" prefHeight="18.0" prefWidth="126.0" text="Ajouter un plat" textFill="WHITE" />
-            <BottomNavigationButton contentDisplay="CENTER" layoutX="662.0" layoutY="1.0" prefHeight="42.0" prefWidth="40.0" style="-fx-background-color: gray;" text="X" textFill="WHITE" textOverrun="LEADING_ELLIPSIS" />
          </children></AnchorPane>
       <JFXButton layoutX="243.0" layoutY="353.0" onAction="#AjouterPlat" prefHeight="26.0" prefWidth="415.0" style="-fx-background-color: black;" text="Ajouter" textFill="WHITE" />
       <ImageView fx:id="imgAdd" fitHeight="160.0" fitWidth="157.0" layoutX="38.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
