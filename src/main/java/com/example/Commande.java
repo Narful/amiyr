@@ -1,13 +1,45 @@
 package com.example;
 
-import java.util.LinkedList;
 import java.sql.*;
+import java.util.LinkedList;
 
 public class Commande {
    public int idCommande;
    public String note;
+   public String date;
    public Boolean status;
+   public float montant;
    private Connection connection;
+
+   // Getter for date
+   public String getDate() {
+      return date;
+   }
+
+   // Getter for idCommande
+   public int getIdCommande() {
+      return idCommande;
+   }
+
+   // Getter for status
+   public boolean isStatus() {
+      return status;
+   }
+
+   // Setter for date
+   public void setDate(String date) {
+      this.date = date;
+   }
+
+   // Setter for idCommande
+   public void setIdCommande(int idCommande) {
+      this.idCommande = idCommande;
+   }
+
+   // Setter for status
+   public void setStatus(boolean status) {
+      this.status = status;
+   }
 
    public boolean passerCommande(int idPanier) {
       // Implémentation de la méthode passerCommande
@@ -39,7 +71,7 @@ public class Commande {
          while (resultSet.next()) {
             Commande commande = new Commande();
             commande.idCommande = resultSet.getInt("idCommande");
-            commande.note = resultSet.getString("note");
+            commande.date = resultSet.getString("Creadate");
             commande.status = resultSet.getBoolean("status");
             commandes.add(commande);
          }
@@ -65,7 +97,6 @@ public class Commande {
       }
    }
 
-
    public boolean validerCommande(int idCommande) {
       try {
          // Exécuter une requête SQL pour mettre à jour le statut de la commande
@@ -80,6 +111,7 @@ public class Commande {
          return false;
       }
    }
+
    public boolean creationlivraison(int idCommande, String note) {
       try {
          // Vérifier d'abord si la commande est validée
@@ -111,9 +143,6 @@ public class Commande {
          return false;
       }
    }
-
-
-
 
    public boolean annulerCommande(int idCommande) {
       try {
