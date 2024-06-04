@@ -34,5 +34,20 @@ public class CartePlatClientController {
     }
 
 
+    public void setPlat(String nomPlat, String categoriePlat, byte[] image,float prix) {
+        nomPlatLabel.setText(nomPlat);
+        categoriePlatLabel.setText(categoriePlat);
+        prixPlatLabel.setText(prix + "Dh");
+        if (image != null && image.length > 0) {
+            imagePlat.setImage(Plat.convertToJavaFXImage(image, 200, 150)); // Conversion et affichage de l'image
+            imagePlat.setFitWidth(215);
+            imagePlat.setFitHeight(150);
+            imagePlat.setPreserveRatio(false);
+            imagePlat.setSmooth(true);
+        }
+    }
+
+
+
 
 }
