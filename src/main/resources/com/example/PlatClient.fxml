@@ -265,7 +265,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ProgressBar layoutX="106.0" layoutY="131.0" prefHeight="30.0" prefWidth="1110.0" progress="0.0" />
+            <ProgressBar fx:id="progressBar" layoutX="106.0" layoutY="131.0" prefHeight="30.0" prefWidth="1110.0" progress="0.65" />
             <Label layoutX="1112.0" layoutY="182.0" text="10 min restants">
                <font>
                   <Font size="14.0" />
@@ -282,7 +282,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <BorderPane disable="true" layoutX="400.0" layoutY="171.0" prefHeight="511.0" prefWidth="563.0" style="-fx-background-color: grey;">
+            <BorderPane disable="true" layoutX="400.0" layoutY="171.0" prefHeight="511.0" prefWidth="563.0" style="-fx-background-color: grey;" visible="false">
                <top>
                   <Label text="Confirmation" BorderPane.alignment="CENTER">
                      <font>

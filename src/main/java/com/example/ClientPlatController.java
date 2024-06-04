@@ -1,8 +1,10 @@
 package com.example;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -22,6 +24,11 @@ public class ClientPlatController {
 
     @FXML
     private AnchorPane menuitems;
+
+    @FXML
+    private ProgressBar progressBar;
+
+    double progress;
 
     public void initialize() {
 
@@ -61,6 +68,30 @@ public class ClientPlatController {
         
         //!! ghadi nakhdo l'objet plat ou n'ajoutiwh fl HBox dial lpanier 
 
+    }
+
+    public void startProgressBar(){
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                final int totalSeconds = 600;
+                for(int i = 0;i<=totalSeconds;i++){
+                    updateProgress(i, totalSeconds);
+                    Thread.sleep(1000);
+
+                }
+                return null;
+            }
+        };
+        progressBar.progressProperty().bind(task.progressProperty());
+        new Thread(task).start();
+    }
+
+
+    //for testing 
+    public void increaseProgressBar(){
+        progress = progress + 0.01;
+        progressBar.setProgress(progress);
     }
 
 }
