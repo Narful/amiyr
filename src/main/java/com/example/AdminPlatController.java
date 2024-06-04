@@ -1,43 +1,51 @@
 package com.example;
 
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import java.io.ByteArrayInputStream;
-import java.sql.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+
+import java.io.IOException;
+import java.util.List;
 
 public class AdminPlatController {
 
     @FXML
-    private ImageView imgp;
-    
-
+    private HBox HBoxContainer;
 
     public void initialize() {
+        // Charger les plats
+        Plat plat = new Plat();
+        List<Plat> plats = plat.consulterPlats();
 
-        Image image = getImageFromDatabase();
-        if (image != null) {
-            imgp.setImage(image);
+        // Afficher les plats dans la console pour vérification
+        for (Plat p : plats) {
+            System.out.println("Plat trouvé: " + p.nom + " - " + p.categorie);
         }
-    }
 
-    // Méthode pour récupérer l'image depuis la base de données
-    private Image getImageFromDatabase() {
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            String query = "SELECT photo FROM plat WHERE idPlat = 1";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                ResultSet resultSet = preparedStatement.executeQuery();
-                if (resultSet.next()) {
-                    Blob blob = resultSet.getBlob("photo");
-                    if (blob != null) {
-                        byte[] imageData = blob.getBytes(1, (int) blob.length());
-                        return new Image(new ByteArrayInputStream(imageData));
-                    }
-                }
+        // Ajouter les plats au HBoxContainer pour affichage
+        for (Plat p : plats) {
+            try {
+                // Charger le fichier FXML pour chaque plat
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("cartePlatAdmin.fxml"));
+                Node cartePlatNode = loader.load();
+
+                // Obtenir le contrôleur associé au fichier FXML
+                CartePlatAdminController controller = loader.getController();
+                // Passer les données du plat au contrôleur de la carte
+                controller.setPlat(p.nom, p.categorie, p.photo);
+
+                // Ajouter le node au HBoxContainer
+                HBoxContainer.getChildren().add(cartePlatNode);
+
+                // Ajouter un espaceur entre les cartes
+                Region spacer = new Region();
+                spacer.setPrefWidth(20); // Taille de l'espace
+                HBoxContainer.getChildren().add(spacer);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        return null;
     }
 }

@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 //import javafx.stage.StageStyle;
 
@@ -19,7 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("AjouterPlat"), 1550, 790);
+        scene = new Scene(loadFXML("PlatAdmin"), 1550, 790);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setScene(scene);
         // stage.initStyle(StageStyle.TRANSPARENT);
@@ -37,6 +36,6 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
-    }
+    } 
 
 }

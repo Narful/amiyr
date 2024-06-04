@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="197.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.CartePlatAdminController">
+   <children>
+      <VBox prefHeight="277.0" prefWidth="198.0">
+         <children>
+            <ImageView fx:id="imagePlat" fitWidth="200" fitHeight="150" preserveRatio="false" smooth="true" />
+            <VBox prefHeight="135.0" prefWidth="198.0">
+               <children>
+                  <Label fx:id="nomPlatLabel" prefHeight="20.0" prefWidth="187.0" text="Nom Plat">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="categoriePlatLabel" prefHeight="18.0" prefWidth="186.0" text="Categorie">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <VBox prefHeight="91.0" prefWidth="198.0">
+                     <children>
+                        <JFXButton focusTraversable="false" onAction="#AjouterAuMenu" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: #003049; -fx-border-color: #003049;" text="Ajouter au menu" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="10.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton focusTraversable="false" layoutX="10.0" layoutY="10.0" onAction="#ModifPlat" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: #003049; -fx-border-width: 0.5;" text="Editer" textFill="#003049">
+                           <font>
+                              <Font name="Arial" size="10.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton focusTraversable="false" layoutX="10.0" layoutY="36.0" onAction="#SuppPlat" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: #003049; -fx-border-width: 0.5;" text="Supprimer" textFill="#003049">
+                           <font>
+                              <Font name="Arial" size="10.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="13.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
