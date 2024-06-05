@@ -80,7 +80,7 @@ public class Plat {
       this.prix = prix;
    }
    public boolean ajouterPlat() {
-      String sql = "INSERT INTO plat (nom, categorie, description, photo, qte, prix, isMenu) VALUES (?, ?, ?, ?, ?, ?, 0)";
+      String sql = "INSERT INTO plat (nom, categorie, description, photo, qte, prix, isMenu) VALUES (?, ?, ?, ?, ?, ?, 1)";
       try (Connection connection = DatabaseConnection.getConnection();
            PreparedStatement statement = connection.prepareStatement(sql)) {
          statement.setString(1, nom);
