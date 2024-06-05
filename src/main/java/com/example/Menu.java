@@ -47,24 +47,28 @@ public class Menu {
       } catch (SQLException e) {
          e.printStackTrace();
          return false;
-      }}
-   public List<Integer> consulter() {
-      List<Integer> platsEnMenu = new ArrayList<>();
+      }
+   }
+
+   public List<Plat> consulterPlatsEnMenu() {
+      List<Plat> plats = new ArrayList<>();
       try (Connection connection = DatabaseConnection.getConnection()) {
-         String query = "SELECT idPlat FROM plat WHERE isMenu = 1";
+         String query = "SELECT nom, categorie, photo, prix FROM plat WHERE isMenu = 1";
          PreparedStatement preparedStatement = connection.prepareStatement(query);
          ResultSet resultSet = preparedStatement.executeQuery();
 
          while (resultSet.next()) {
-            int idPlat = resultSet.getInt("idPlat");
-            platsEnMenu.add(idPlat);
+            Plat plat = new Plat();
+            plat.nom = resultSet.getString("nom");
+            plat.categorie = resultSet.getString("categorie");
+            plat.photo = resultSet.getBytes("photo");
+            plats.add(plat);
          }
       } catch (SQLException e) {
          e.printStackTrace();
       }
-      return platsEnMenu;
+      return plats;
    }
-
 
    public Boolean genererPdf() {
       try (Connection connection = DatabaseConnection.getConnection()) {
@@ -75,8 +79,10 @@ public class Menu {
 
          // Utiliser TreeMap pour garantir l'ordre et placer "platdujour" en premier
          Map<String, Map<String, Dish>> dishesByCategory = new TreeMap<>((cat1, cat2) -> {
-            if ("platdujour".equals(cat1)) return -1;
-            if ("platdujour".equals(cat2)) return 1;
+            if ("platdujour".equals(cat1))
+               return -1;
+            if ("platdujour".equals(cat2))
+               return 1;
             return cat1.compareTo(cat2);
          });
 
@@ -101,11 +107,11 @@ public class Menu {
 
             // Ajouter le titre principal
             Paragraph title = new Paragraph("Le Menu de Amiyr")
-                    .setBold()
-                    .setFontSize(24)
-                    .setMarginBottom(20)
-                    .setTextAlignment(TextAlignment.CENTER)
-                    .setFontColor(ColorConstants.BLACK);
+                  .setBold()
+                  .setFontSize(24)
+                  .setMarginBottom(20)
+                  .setTextAlignment(TextAlignment.CENTER)
+                  .setFontColor(ColorConstants.BLACK);
             document.add(title);
 
             for (Map.Entry<String, Map<String, Dish>> entry : dishesByCategory.entrySet()) {
@@ -127,13 +133,13 @@ public class Menu {
 
                for (Dish dish : dishes.values()) {
                   document.add(new Paragraph(dish.getName() + " - " + dish.getPrice() + " DH")
-                          .setBold()
-                          .setFontSize(14)
-                          .setFontColor(ColorConstants.DARK_GRAY));
+                        .setBold()
+                        .setFontSize(14)
+                        .setFontColor(ColorConstants.DARK_GRAY));
                   document.add(new Paragraph(dish.getDescription())
-                          .setFontSize(12)
-                          .setFontColor(ColorConstants.DARK_GRAY)
-                          .setMarginBottom(20));
+                        .setFontSize(12)
+                        .setFontColor(ColorConstants.DARK_GRAY)
+                        .setMarginBottom(20));
                }
             }
 
@@ -179,5 +185,6 @@ public class Menu {
 
       public byte[] getPhoto() {
          return photo;
-      }}
+      }
+   }
 }

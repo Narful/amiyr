@@ -4,27 +4,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 public class CartePlatAdminController {
 
     @FXML
-    private Label categoriePlatLabel;
-
+    private Label platNom;
     @FXML
-    private ImageView imagePlat;
-
+    private Label platCategorie;
     @FXML
-    private Label nomPlatLabel;
+    private ImageView platImage;
 
-    public void setPlat(String nomPlat, String categoriePlat, byte[] image) {
-        nomPlatLabel.setText(nomPlat);
-        categoriePlatLabel.setText(categoriePlat);
-        if (image != null && image.length > 0) {
-            imagePlat.setImage(Plat.convertToJavaFXImage(image, 200, 150)); // Conversion et affichage de l'image
-            imagePlat.setFitWidth(215);
-            imagePlat.setFitHeight(150);
-            imagePlat.setPreserveRatio(false);
-            imagePlat.setSmooth(true);
+    public void setPlat(String nom, String categorie, byte[] photo) {
+        platNom.setText(nom);
+        platCategorie.setText(categorie);
+
+        if (photo != null && photo.length > 0) {
+            Image image = Plat.convertToJavaFXImage(photo, 100, 100); // Vous pouvez ajuster la taille de l'image
+            platImage.setImage(image);
         }
     }
 
