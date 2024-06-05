@@ -54,22 +54,19 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="45.0" layoutY="225.0" prefHeight="528.0" prefWidth="612.0">
+                  <TableView layoutX="45.0" layoutY="225.0" prefHeight="429.0" prefWidth="612.0">
                     <columns>
-                      <TableColumn fx:id="photo" prefWidth="108.00004577636719" text="Photo" />
-                      <TableColumn fx:id="nom" prefWidth="122.39996337890625" text="Nom" />
-                        <TableColumn fx:id="categorie" prefWidth="122.39996337890625" text="Catégorie" />
-                        <TableColumn fx:id="prix" prefWidth="122.39996337890625" text="Prix" />
-                        <TableColumn fx:id="ajouterAuPanier" prefWidth="135.20001220703125" text="Ajouter au panier" />
+                      <TableColumn fx:id="photo" prefWidth="141.6000518798828" text="Photo" />
+                      <TableColumn fx:id="nom" prefWidth="157.5999755859375" text="Nom" />
+                        <TableColumn fx:id="categorie" prefWidth="172.800048828125" text="Catégorie" />
+                        <TableColumn fx:id="prix" prefWidth="140.00006103515625" text="Prix" />
                     </columns>
                   </TableView>
                   <TableView layoutX="681.0" layoutY="225.0" prefHeight="429.0" prefWidth="612.0">
                      <columns>
                         <TableColumn fx:id="nomP" prefWidth="213.60003662109375" text="Nom" />
-                        <TableColumn fx:id="qteP" prefWidth="101.5999755859375" text="Quantité" />
-                        <TableColumn fx:id="prixTotalP" prefWidth="132.800048828125" text="Prix total" />
-                        <TableColumn fx:id="ajouter" prefWidth="80.0001220703125" text="+" />
-                        <TableColumn fx:id="retirer" prefWidth="84.0001220703125" text="-" />
+                        <TableColumn fx:id="qteP" prefWidth="184.800048828125" text="Quantité" />
+                        <TableColumn fx:id="prixTotalP" prefWidth="212.800048828125" text="Prix total" />
                      </columns>
                   </TableView>
                   <Label layoutX="738.0" layoutY="686.0" text="Total :">
@@ -82,7 +79,8 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <JFXButton layoutX="1083.0" layoutY="687.0" prefHeight="31.0" prefWidth="175.0" style="-fx-background-color: #003049;" text="Passer la commande" textFill="WHITE" />
+                  <JFXButton layoutX="1083.0" layoutY="687.0" onAction="#PasserCmd" prefHeight="31.0" prefWidth="175.0" style="-fx-background-color: #003049;" text="Passer la commande" textFill="WHITE" />
+                  <JFXButton layoutX="264.0" layoutY="684.0" onAction="#AjoutAuPanier" prefHeight="31.0" prefWidth="175.0" style="-fx-background-color: #003049;" text="Ajouter au panier" textFill="WHITE" />
                </children>
             </Pane>
          </children>

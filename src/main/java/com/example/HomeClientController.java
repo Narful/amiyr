@@ -7,33 +7,31 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeClientController {
 
     @FXML
-    private TableView<Plat> tableMenu;
+    private TableView<Plats> tableMenu;
     @FXML
-    private TableView<Plat> tablePanier;
+    private TableView<Plats> tablePanier;
     @FXML
-    private TableColumn<Plat, ImageView> photo;
+    private TableColumn<Plats, ImageView> photo;
     @FXML
-    private TableColumn<Plat, String> nom;
+    private TableColumn<Plats, String> nom;
     @FXML
-    private TableColumn<Plat, String> categorie;
+    private TableColumn<Plats, String> categorie;
     @FXML
-    private TableColumn<Plat, Float> prix;
+    private TableColumn<Plats, Float> prix;
+
     @FXML
-    private TableColumn<Plat, Void> ajouterAuPanier;
+    private TableColumn<Plats, String> nomP;
     @FXML
-    private TableColumn<Plat, String> nomP;
+    private TableColumn<Plats, Integer> qteP;
     @FXML
-    private TableColumn<Plat, Integer> qteP;
-    @FXML
-    private TableColumn<Plat, Float> prixTotalP;
-    @FXML
-    private TableColumn<Plat, Void> retirer;
+    private TableColumn<Plats, Float> prixTotalP;
 
     @FXML
     private ImageView logoAmiyr;
@@ -42,95 +40,79 @@ public class HomeClientController {
     private Label montantTotalP;
 
     @FXML
-    void toLogout(ActionEvent event) {
-        // Handle logout logic
-    }
+    private Button ajouterButton;
 
-    private List<Plat> menuPlats;
-    private List<Plat> panierPlats = new ArrayList<>();
+    private List<Plats> menuPlats;
+    private List<Plats> panierPlats = new ArrayList<>();
 
     @FXML
     public void initialize() {
         // Initialize the table columns for the menu
         photo.setCellValueFactory(param -> {
             ImageView imageView = new ImageView();
-            Image img = Plat.convertToJavaFXImage(param.getValue().photo, 50, 50);
+            Image img = Plat.convertToJavaFXImage(param.getValue().getPhoto(), 50, 50);
             imageView.setImage(img);
             return new ReadOnlyObjectWrapper<>(imageView);
         });
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         categorie.setCellValueFactory(new PropertyValueFactory<>("categorie"));
         prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        ajouterAuPanier.setCellFactory(param -> new TableCell<Plat, Void>() {
-            private final Button btn = new Button("Ajouter");
-
-            {
-                btn.setOnAction(event -> {
-                    Plat plat = getTableView().getItems().get(getIndex());
-                    addToPanier(plat);
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(btn);
-                }
-            }
-        });
 
         // Initialize the table columns for the basket
         nomP.setCellValueFactory(new PropertyValueFactory<>("nom"));
         qteP.setCellValueFactory(new PropertyValueFactory<>("qte"));
-        prixTotalP.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().prix * param.getValue().qte));
-        retirer.setCellFactory(param -> new TableCell<Plat, Void>() {
-            private final Button btn = new Button("Retirer");
-
-            {
-                btn.setOnAction(event -> {
-                    Plat plat = getTableView().getItems().get(getIndex());
-                    removeFromPanier(plat);
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(btn);
-                }
-            }
-        });
+        prixTotalP.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getPrix() * param.getValue().getQte()));
 
         // Load data into the menu table
-        menuPlats = new Plat().consulterPlats();
+        menuPlats = new Plats().consulterPlats();
         tableMenu.getItems().setAll(menuPlats);
+
+        // Disable the add button if no row is selected
+        ajouterButton.setDisable(true);
+        tableMenu.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            ajouterButton.setDisable(newSelection == null);
+        });
+    }
+
+    @FXML
+    void toLogout(ActionEvent event) {
+        // Handle logout logic
+    }
+
+    @FXML
+    void AjoutAuPanier(ActionEvent event) {
+        Plat selectedPlat = tableMenu.getSelectionModel().getSelectedItem();
+        if (selectedPlat != null) {
+            addToPanier(selectedPlat);
+        }
     }
 
     private void addToPanier(Plat plat) {
-        if (panierPlats.contains(plat)) {
-            plat.setQte(plat.getQte() + 1);
-        } else {
-            plat.setQte(1);
-            panierPlats.add(plat);
+        boolean found = false;
+        for (Plat p : panierPlats) {
+            if (p.getIdPlat() == plat.getIdPlat()) {
+                p.setQte(p.getQte() + 1);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            Plat newPlat = new Plat();
+            newPlat.setIdPlat(plat.getIdPlat());
+            newPlat.setNom(plat.getNom());
+            newPlat.setCategorie(plat.getCategorie());
+            newPlat.setDescription(plat.getDescription());
+            newPlat.setPhoto(plat.getPhoto());
+            newPlat.setQte(1);
+            newPlat.setPrix(plat.getPrix());
+            panierPlats.add(newPlat);
         }
         updatePanier();
     }
 
     private void removeFromPanier(Plat plat) {
-        if (panierPlats.contains(plat)) {
-            if (plat.getQte() > 1) {
-                plat.setQte(plat.getQte() - 1);
-            } else {
-                panierPlats.remove(plat);
-            }
-            updatePanier();
-        }
+        panierPlats.remove(plat);
+        updatePanier();
     }
 
     private void updatePanier() {
