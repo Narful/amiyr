@@ -88,6 +88,7 @@ public class ClientPlatController {
                 controller.setPlat(p.idPlat,p.nom, p.categorie, p.photo, p.prix);
 
                 // Ajouter le node au HBoxContainer
+                System.out.println("before le plat est ajouté");
                 menuContainer.getChildren().add(cartePlatNode);
 
                 // Ajouter un espaceur entre les cartes

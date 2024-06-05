@@ -43,7 +43,7 @@
                   <Label fx:id="prixPlatLabel" prefHeight="42.0" prefWidth="111.0" text="prixMad" />
                </children>
             </HBox>
-            <Button fx:id="addCartBtn" mnemonicParsing="false" onMouseClicked="#ajouterAuPanier" prefHeight="26.0" prefWidth="198.0">
+            <Button fx:id="addCartBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0">
                <graphic>
                   <FontAwesomeIcon glyphName="SHOPPING_CART" size="1.5em" />
                </graphic>

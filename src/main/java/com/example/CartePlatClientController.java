@@ -45,7 +45,9 @@ public class CartePlatClientController {
             imagePlat.setFitHeight(150);
             imagePlat.setPreserveRatio(false);
             imagePlat.setSmooth(true);
+            
         }
+        System.out.println("dish is set");
     }
 
     public Plat returnPlatObj(){

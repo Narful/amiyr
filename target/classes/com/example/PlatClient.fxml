@@ -59,6 +59,7 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
+                  <HBox fx:id="menuContainer" layoutX="87.0" layoutY="281.0" prefHeight="328.0" prefWidth="1196.0" />
                   <AnchorPane fx:id="panierForm" layoutX="881.0" layoutY="217.0" prefHeight="481.0" prefWidth="335.0" style="-fx-background-color: white;" visible="false">
                      <children>
                         <ScrollPane layoutX="10.0" layoutY="78.0" prefHeight="291.0" prefWidth="318.0">
@@ -102,7 +103,6 @@
                         <FontAwesomeIcon glyphName="SHOPPING_CART" />
                      </graphic>
                   </Button>
-                  <HBox fx:id="menuContainer" layoutX="87.0" layoutY="281.0" prefHeight="219.0" prefWidth="636.0" />
                </children>
             </Pane>
          </children>
