@@ -23,7 +23,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" layoutX="13.0" layoutY="24.0" prefHeight="58.0" prefWidth="1273.0">
                      <children>
-                        <FontAwesomeIcon glyphName="ARROW_LEFT" size="1.5em" />
+                        <FontAwesomeIcon fx:id="toHome" glyphName="ARROW_LEFT" size="1.5em" />
                         <Label prefHeight="27.0" prefWidth="127.0" text="Mon menu">
                            <font>
                               <Font name="Arial" size="24.0" />
@@ -76,7 +76,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="1.0" prefHeight="798.0" prefWidth="219.0">
+      <AnchorPane prefHeight="798.0" prefWidth="219.0">
          <children>
             <AnchorPane layoutX="67.0" layoutY="8.0" prefHeight="790.0" prefWidth="155.0">
                <children>
@@ -103,7 +103,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </JFXButton>
-                              <JFXButton alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Plats" textFill="#919191">
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toPlat" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Plats" textFill="#919191">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -111,7 +111,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </JFXButton>
-                              <JFXButton alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="154.0" ripplerFill="#edf2f4" text="Commandes" textFill="#919191">
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toCommande" prefHeight="38.0" prefWidth="154.0" ripplerFill="#edf2f4" text="Commandes" textFill="#919191">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -119,7 +119,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </JFXButton>
-                              <JFXButton alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Livraison" textFill="#919191">
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toLiv" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Livraison" textFill="#919191">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -127,7 +127,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </JFXButton>
-                              <JFXButton alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="156.0" ripplerFill="#edf2f4" text="Comptes" textFill="#919191">
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toCpt" prefHeight="38.0" prefWidth="156.0" ripplerFill="#edf2f4" text="Comptes" textFill="#919191">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -135,7 +135,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </JFXButton>
-                              <JFXButton alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Historique" textFill="#919191">
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toHis" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Historique" textFill="#919191">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -150,7 +150,7 @@
                         </VBox>
                         <VBox prefHeight="0.0" prefWidth="139.0" spacing="10.0">
                            <children>
-                              <JFXButton alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="179.0" ripplerFill="#edf2f4" text="Paramètres" textFill="#919191">
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toSettings" prefHeight="38.0" prefWidth="179.0" ripplerFill="#edf2f4" text="Paramètres" textFill="#919191">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -158,7 +158,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </JFXButton>
-                              <JFXButton alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="179.0" ripplerFill="#edf2f4" text="Se déconnecter" textFill="#919191">
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toLogout" prefHeight="38.0" prefWidth="179.0" ripplerFill="#edf2f4" text="Se déconnecter" textFill="#919191">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
