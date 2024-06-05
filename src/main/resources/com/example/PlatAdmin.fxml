@@ -31,7 +31,7 @@
                               <Insets left="35.0" />
                            </HBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" style="-fx-background-color: #780000;" text="Ajouter un plat" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#AjoutPlatPopUp" prefHeight="38.0" prefWidth="163.0" style="-fx-background-color: #780000;" text="Ajouter un plat" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="33.0" />
                            </HBox.margin>

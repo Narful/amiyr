@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -57,8 +59,7 @@ public class AjouterPlatController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-        );
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             try {
@@ -83,9 +84,18 @@ public class AjouterPlatController {
     }
 
     public void initialize() {
-        Plat plat = new Plat();        List<String> categories = plat.recupererCategories();
+        Plat plat = new Plat();
+        List<String> categories = plat.recupererCategories();
         categorie.getItems().addAll(categories);
         qte.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE, 0));
         qte.setEditable(true);
+    }
+
+    @FXML
+    void close(MouseEvent event) {
+        // Get the stage (window) from the event source
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        // Close the stage
+        stage.close();
     }
 }

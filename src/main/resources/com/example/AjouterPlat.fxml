@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AjouterPlatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="700.0" style="-fx-border-color: grey; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.AjouterPlatController">
    <children>
       <Label layoutX="244.0" layoutY="303.0" prefHeight="29.0" prefWidth="60.0" text="Quantité" />
       <TextField fx:id="nom" layoutX="244.0" layoutY="86.0" prefHeight="26.0" prefWidth="199.0" promptText="Nom" />
@@ -22,12 +22,17 @@
       <TextField fx:id="prix" layoutX="480.0" layoutY="304.0" prefHeight="26.0" prefWidth="178.0" promptText="Prix" />
       <AnchorPane fx:id="btnAjouter" prefHeight="42.0" prefWidth="700.0" style="-fx-background-color: gray;">
          <children>
-            <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" layoutX="669.0" layoutY="27.0" size="1.5em" wrappingWidth="12.0" />
+            <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" layoutX="669.0" layoutY="27.0" onMouseClicked="#close" size="1.5em" wrappingWidth="12.0" />
             <Label layoutX="14.0" layoutY="13.0" prefHeight="18.0" prefWidth="126.0" text="Ajouter un plat" textFill="WHITE" />
          </children></AnchorPane>
       <JFXButton layoutX="243.0" layoutY="353.0" onAction="#AjouterPlat" prefHeight="26.0" prefWidth="415.0" style="-fx-background-color: black;" text="Ajouter" textFill="WHITE" />
-      <ImageView fx:id="imgAdd" fitHeight="160.0" fitWidth="157.0" layoutX="38.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane layoutX="81.0" layoutY="233.0" prefHeight="30.0" prefWidth="60.0">
+      <Pane layoutX="38.0" layoutY="86.0" style="-fx-border-color: grey; -fx-border-radius: 3;">
+         <children>
+            <ImageView fx:id="imgAdd" fitHeight="160.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="31.0" layoutY="73.0" text="Ajouter image jpg" />
+         </children>
+      </Pane>
+      <Pane layoutX="87.0" layoutY="231.0" prefHeight="30.0" prefWidth="60.0">
          <children>
             <Button mnemonicParsing="false" onAction="#addIMG" prefHeight="30.0" prefWidth="60.0" />
             <FontAwesomeIcon glyphName="PLUS" layoutX="25.0" layoutY="19.714279174804688" />

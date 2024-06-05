@@ -4,8 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.List;
@@ -53,6 +58,47 @@ public class AdminPlatController {
     }
 
     @FXML
+    void AjoutPlatPopUp(ActionEvent event) {
+        try {
+            // Load the FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjouterPlat.fxml"));
+            Parent parent = fxmlLoader.load();
+
+            // Create the new stage for the popup
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(new Scene(parent));
+
+            // Set the width and height of the popup window manually
+            double popupWidth = 700; // Adjust as necessary
+            double popupHeight = 412; // Adjust as necessary
+
+            stage.setWidth(popupWidth);
+            stage.setHeight(popupHeight);
+
+            // Get the parent stage (main window)
+            Stage primaryStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+            // Set the popup to be modal and block input events to other windows
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(primaryStage);
+
+            // Center the popup on the parent stage based on fixed size
+            double parentWidth = 1550;
+            double parentHeight = 790;
+
+            stage.setX(primaryStage.getX() + parentWidth / 2 - popupWidth / 2);
+            stage.setY(primaryStage.getY() + parentHeight / 2 - popupHeight / 2);
+
+            // Show the popup
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     void toCommande(ActionEvent event) {
 
     }
@@ -63,12 +109,7 @@ public class AdminPlatController {
     }
 
     @FXML
-    void toHis(ActionEvent event) {
-        try {
-            App.setRoot("historiqueAdmin");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    void toLiv(ActionEvent event) {
 
     }
 
@@ -82,8 +123,12 @@ public class AdminPlatController {
     }
 
     @FXML
-    void toLiv(ActionEvent event) {
-
+    void toHis(ActionEvent event) {
+        try {
+            App.setRoot("historiqueAdmin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -93,7 +138,6 @@ public class AdminPlatController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
