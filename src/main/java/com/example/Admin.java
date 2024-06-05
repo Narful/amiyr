@@ -29,6 +29,8 @@ public class Admin extends Utilisateur {
       }
    }
 
+   
+
    public Boolean supprimerCompte(int idCpt) {
       try (Connection connection = DatabaseConnection.getConnection()) {
          String query = "DELETE FROM utilisateur WHERE idCpt = ?";
