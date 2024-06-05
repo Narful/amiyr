@@ -53,12 +53,13 @@ public class Menu {
    public List<Plat> consulterPlatsEnMenu() {
       List<Plat> plats = new ArrayList<>();
       try (Connection connection = DatabaseConnection.getConnection()) {
-         String query = "SELECT nom, categorie, photo, prix FROM plat WHERE isMenu = 1";
+         String query = "SELECT idPlat, nom, categorie, photo FROM plat WHERE isMenu = 1";
          PreparedStatement preparedStatement = connection.prepareStatement(query);
          ResultSet resultSet = preparedStatement.executeQuery();
 
          while (resultSet.next()) {
             Plat plat = new Plat();
+            plat.idPlat = resultSet.getInt("idPlat");
             plat.nom = resultSet.getString("nom");
             plat.categorie = resultSet.getString("categorie");
             plat.photo = resultSet.getBytes("photo");
@@ -72,9 +73,8 @@ public class Menu {
 
    public Boolean genererPdf() {
       try (Connection connection = DatabaseConnection.getConnection()) {
-         String query = "SELECT nom, description, prix, categorie, photo FROM plat WHERE isMenu = ?";
+         String query = "SELECT nom, description, prix, categorie, photo FROM plat WHERE isMenu = 1";
          PreparedStatement preparedStatement = connection.prepareStatement(query);
-         preparedStatement.setInt(1, this.idMenu);
          ResultSet resultSet = preparedStatement.executeQuery();
 
          // Utiliser TreeMap pour garantir l'ordre et placer "platdujour" en premier

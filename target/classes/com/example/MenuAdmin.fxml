@@ -38,11 +38,17 @@
                                  <font>
                                     <Font name="Arial Bold" size="14.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #003049;" text="Générer pdf" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#genererPdf" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #003049;" text="Générer pdf" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="14.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children>
                            <HBox.margin>

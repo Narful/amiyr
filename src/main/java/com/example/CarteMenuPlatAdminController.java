@@ -16,7 +16,16 @@ public class CarteMenuPlatAdminController {
     @FXML
     private Label nomPlatLabel;
 
-    public void setPlat(String nomPlat, String categoriePlat, byte[] image) {
+    private AdminMenuController adminMenuController;
+    private int idPlat;
+
+    public void setAdminMenuController(AdminMenuController adminMenuController) {
+        this.adminMenuController = adminMenuController;
+    }
+
+    public void setPlat(int idPlat, String nomPlat, String categoriePlat, byte[] image, AdminMenuController adminMenuController) {
+        this.idPlat = idPlat;
+        this.adminMenuController = adminMenuController;
         nomPlatLabel.setText(nomPlat);
         categoriePlatLabel.setText(categoriePlat);
         if (image != null && image.length > 0) {
@@ -30,7 +39,9 @@ public class CarteMenuPlatAdminController {
 
     @FXML
     void RetirerPlatDeMenu(ActionEvent event) {
-
+        Menu menu = new Menu();
+        if (menu.retirer(idPlat)) {
+            adminMenuController.initialize();
+        }
     }
-
 }

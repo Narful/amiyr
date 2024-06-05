@@ -3,6 +3,7 @@ package com.example;
 import java.io.IOException;
 import java.util.List;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,6 +20,8 @@ public class AdminMenuController {
     private HBox HBoxItems;
 
     public void initialize() {
+        HBoxItems.getChildren().clear(); // Clear previous children
+
         Menu menu = new Menu(); // Assurez-vous d'initialiser Menu correctement si nécessaire
         List<Plat> plats = menu.consulterPlatsEnMenu();
     
@@ -26,7 +29,7 @@ public class AdminMenuController {
         for (Plat p : plats) {
             System.out.println("Plat trouvé: " + p.nom + " - " + p.categorie);
         }
-    
+
         // Ajouter les plats au HBoxItems pour affichage
         for (Plat p : plats) {
             try {
@@ -37,7 +40,7 @@ public class AdminMenuController {
                 // Obtenir le contrôleur associé au fichier FXML
                 CarteMenuPlatAdminController controller = loader.getController();
                 // Passer les données du plat au contrôleur de la carte
-                controller.setPlat(p.nom, p.categorie, p.photo);
+                controller.setPlat(p.idPlat, p.nom, p.categorie, p.photo, this);
     
                 // Ajouter le node au HBoxItems
                 HBoxItems.getChildren().add(cartePlatNode);
@@ -50,5 +53,12 @@ public class AdminMenuController {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    void genererPdf(ActionEvent event) {
+        // Générer le PDF
+        Menu menu = new Menu(); // Assurez-vous d'initialiser Menu correctement si nécessaire
+        menu.genererPdf();
     }
 }
