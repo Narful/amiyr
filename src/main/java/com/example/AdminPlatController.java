@@ -1,5 +1,6 @@
 package com.example;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -49,5 +50,40 @@ public class AdminPlatController {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    void toCommande(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toCpt(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toHis(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toHome(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toLiv(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toLogout(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toSettings(ActionEvent event) {
+
     }
 }
