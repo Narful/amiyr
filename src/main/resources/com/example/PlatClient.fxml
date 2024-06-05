@@ -20,7 +20,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="790.0" prefWidth="1530.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ClientPlatController">
    <children>
-      <AnchorPane fx:id="menuForm" layoutX="210.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="menuForm" layoutX="210.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0" visible="false" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Pane layoutX="119.2" layoutY="-4.0" prefHeight="795.0" prefWidth="1375.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
                <children>
@@ -92,7 +92,7 @@
                                     <FontAwesomeIcon glyphName="TRASH" />
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Commander" />
+                              <Button fx:id="commanderBtn" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="92.0" text="Commander" />
                            </children>
                         </HBox>
                      </children>
@@ -258,26 +258,26 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="CompteForm" layoutX="210.0" layoutY="13.0" prefHeight="791.0" prefWidth="1330.0" visible="false" />
-      <AnchorPane fx:id="commandeForm" layoutX="220.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0" visible="false">
+      <AnchorPane fx:id="commandeForm" layoutX="220.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0">
          <children>
             <Label layoutX="107.0" layoutY="72.0" text="Etat de votre commande">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ProgressBar fx:id="progressBar" layoutX="106.0" layoutY="131.0" prefHeight="30.0" prefWidth="1110.0" progress="0.65" />
+            <ProgressBar fx:id="progressBar" layoutX="106.0" layoutY="131.0" prefHeight="30.0" prefWidth="1110.0" progress="0.0" />
             <Label layoutX="1112.0" layoutY="182.0" text="10 min restants">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <VBox layoutX="445.0" layoutY="237.0" prefHeight="361.0" prefWidth="494.0" />
-            <Button layoutX="660.0" layoutY="704.0" mnemonicParsing="false" text="Annuler">
+            <Button layoutX="660.0" layoutY="704.0" mnemonicParsing="false" text="Annuler" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label layoutX="538.0" layoutY="624.0" text="Votre commande est tourjours en cours de validation">
+            <Label layoutX="538.0" layoutY="624.0" text="Votre commande est en cours de préparation">
                <font>
                   <Font size="14.0" />
                </font>

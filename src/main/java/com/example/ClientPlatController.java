@@ -57,6 +57,9 @@ public class ClientPlatController {
     @FXML
     private Button panierBtn;
 
+    @FXML
+    private Button commanderBtn;
+
 
 
     double progress;
@@ -144,6 +147,12 @@ public class ClientPlatController {
             }else{
                 panierForm.setVisible(true);
             }
+        }else if (event.getSource() == commanderBtn){
+            menuForm.setVisible(false);
+            commandeForm.setVisible(true);
+            CompteForm.setVisible(false);
+            startProgressBar();
+
         }
     } 
 
