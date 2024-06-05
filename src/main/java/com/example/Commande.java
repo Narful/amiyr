@@ -40,6 +40,12 @@ public class Commande {
    public void setStatus(boolean status) {
       this.status = status;
    }
+   public void setMontant(Float montant) {
+      this.montant = montant;
+   }
+   public Float getMontant() {
+      return montant;
+   }
 
    public boolean passerCommande(int idPanier) {
       // Implémentation de la méthode passerCommande
