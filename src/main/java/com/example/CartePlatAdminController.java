@@ -3,8 +3,12 @@ package com.example;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class CartePlatAdminController {
 
@@ -37,12 +41,29 @@ public class CartePlatAdminController {
     @FXML
     void AjouterAuMenu(ActionEvent event) {
         System.out.println("Bouton Ajouter au Menu cliqué pour le plat ID: " + idPlat);
-        Menu menu = new Menu();
-        if (menu.ajouter(idPlat)) {
+        if (platMettreAJourIsMenu(idPlat, 1)) {
             System.out.println("Plat ajouté au menu avec succès.");
             adminPlatController.initialize();
         } else {
             System.out.println("Échec de l'ajout du plat au menu.");
+        }
+    }
+
+    private boolean platMettreAJourIsMenu(int idPlat, int isMenu) {
+        String query = "UPDATE plats SET ismenu = ? WHERE idPlat = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, isMenu);
+            statement.setInt(2, idPlat);
+
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
