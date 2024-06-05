@@ -84,7 +84,13 @@ public class SigninController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
+            }else if (Utilisateur.role.equals("client")) {
+                try {
+                    App.setRoot("PlatClient");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else {
                 System.out.println("User found.");
             }
         } else {
