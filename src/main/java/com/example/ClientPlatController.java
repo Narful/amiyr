@@ -52,6 +52,9 @@ public class ClientPlatController {
     private JFXButton compteBtn;
 
     @FXML
+    private JFXButton disconnectBtn;
+
+    @FXML
     private AnchorPane panierForm;
 
     @FXML
@@ -152,7 +155,12 @@ public class ClientPlatController {
             commandeForm.setVisible(true);
             CompteForm.setVisible(false);
             startProgressBar();
-
+        }else if (event.getSource() == disconnectBtn){
+            try {
+                App.setRoot("signin");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     } 
 
