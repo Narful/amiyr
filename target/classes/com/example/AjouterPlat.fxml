@@ -18,7 +18,7 @@
       <TextField fx:id="nom" layoutX="244.0" layoutY="86.0" prefHeight="26.0" prefWidth="199.0" promptText="Nom" />
       <TextArea fx:id="description" layoutX="244.0" layoutY="129.0" prefHeight="160.0" prefWidth="415.0" promptText="Description" />
       <ComboBox fx:id="categorie" layoutX="459.0" layoutY="86.0" prefHeight="26.0" prefWidth="199.0" promptText="Catégorie" />
-      <Spinner fx:id="qte" editable="true" layoutX="304.0" layoutY="305.0" />
+<Spinner fx:id="qte" editable="true" layoutX="304.0" layoutY="305.0" />
       <TextField fx:id="prix" layoutX="480.0" layoutY="304.0" prefHeight="26.0" prefWidth="178.0" promptText="Prix" />
       <AnchorPane fx:id="btnAjouter" prefHeight="42.0" prefWidth="700.0" style="-fx-background-color: gray;">
          <children>
