@@ -64,12 +64,21 @@ public class AdminPlatController {
 
     @FXML
     void toHis(ActionEvent event) {
+        try {
+            App.setRoot("historiqueAdmin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
     void toHome(ActionEvent event) {
-
+        try {
+            App.setRoot("DashboardAdmin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -79,6 +88,11 @@ public class AdminPlatController {
 
     @FXML
     void toLogout(ActionEvent event) {
+        try {
+            App.setRoot("signin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

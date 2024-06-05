@@ -74,6 +74,11 @@ public class AdminMenuController {
 
     @FXML
     void toHis(ActionEvent event) {
+        try {
+            App.setRoot("historiqueAdmin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -84,17 +89,40 @@ public class AdminMenuController {
 
     @FXML
     void toLogout(ActionEvent event) {
+        try {
+            App.setRoot("signin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void toMenu(ActionEvent event) {
+        try {
+            App.setRoot("MenuAdmin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
     void toPlat(ActionEvent event) {
-
+        try {
+            App.setRoot("PlatAdmin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void toSettings(ActionEvent event) {
-
-    }
-
+    void toHome(ActionEvent event) {
+        try {
+            App.setRoot("DashboardAdmin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+}
 }

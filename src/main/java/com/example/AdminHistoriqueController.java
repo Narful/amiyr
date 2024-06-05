@@ -174,19 +174,6 @@ public class AdminHistoriqueController {
         return commandesList;
     }
 
-    @FXML
-    private AnchorPane menuitems;
-
-    @FXML
-    void hidemenu(MouseEvent event) {
-
-    }
-
-    @FXML
-    void showmenu(MouseEvent event) {
-
-    }
-
     public class BooleanStringConverter extends javafx.util.StringConverter<Boolean> {
         @Override
         public String toString(Boolean object) {
@@ -199,4 +186,7 @@ public class AdminHistoriqueController {
         }
 
     }
+
+    
+
 }
