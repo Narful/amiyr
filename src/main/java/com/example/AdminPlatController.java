@@ -5,8 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -16,6 +15,7 @@ public class AdminPlatController {
     private HBox HBoxContainer;
 
     public void initialize() {
+        HBoxContainer.getChildren().clear(); // Vider le conteneur avant de le recharger
 
         // Charger les plats
         Plat plat = new Plat();
@@ -36,7 +36,7 @@ public class AdminPlatController {
                 // Obtenir le contrôleur associé au fichier FXML
                 CartePlatAdminController controller = loader.getController();
                 // Passer les données du plat au contrôleur de la carte
-                controller.setPlat(p.nom, p.categorie, p.photo);
+                controller.setPlat(p.idPlat, p.nom, p.categorie, p.photo, this);
 
                 // Ajouter le node au HBoxContainer
                 HBoxContainer.getChildren().add(cartePlatNode);
