@@ -24,13 +24,13 @@
                <children>
                   <HBox alignment="CENTER_LEFT" layoutX="13.0" layoutY="24.0" prefHeight="58.0" prefWidth="1273.0">
                      <children>
-                        <StackPane>
+                        <StackPane prefHeight="58.0" prefWidth="59.0">
                            <children>
-                              <JFXButton onAction="#toHome" style="-fx-background-color: #edf2f4;" textFill="#edf2f4" />
+                              <JFXButton onAction="#toHome" prefHeight="42.0" prefWidth="36.0" style="-fx-background-color: #edf2f4;" textFill="#edf2f4" />
                               <FontAwesomeIcon fx:id="toHome" glyphName="ARROW_LEFT" size="1.5em" text="" />
                            </children>
                         </StackPane>
-                        <Label prefHeight="27.0" prefWidth="127.0" text="Mon menu">
+                        <Label prefHeight="27.0" prefWidth="153.0" text="Mon menu">
                            <font>
                               <Font name="Arial" size="24.0" />
                            </font>

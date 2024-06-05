@@ -98,16 +98,6 @@ public class AdminMenuController {
     }
 
     @FXML
-    void toMenu(ActionEvent event) {
-        try {
-            App.setRoot("MenuAdmin");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
     void toPlat(ActionEvent event) {
         try {
             App.setRoot("PlatAdmin");
@@ -123,6 +113,10 @@ public class AdminMenuController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-}
+    }
+
+    @FXML
+    void toSettings(ActionEvent event) {
+
+    }
 }

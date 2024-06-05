@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -186,6 +187,49 @@ public class AdminHistoriqueController {
 
     }
 
-    
+    @FXML
+    void toCmd(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toCpt(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toHome(ActionEvent event) {
+        try {
+            App.setRoot("DashboardAdmin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void toLiv(ActionEvent event) {
+
+    }
+
+    @FXML
+    void toPlat(ActionEvent event) {
+        try {
+            App.setRoot("PlatAdmin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void toLogout(ActionEvent event) {
+        try {
+            App.setRoot("signin");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
