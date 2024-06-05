@@ -1,6 +1,8 @@
 package com.example;
 
+import javafx.event.ActionEvent;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,6 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.util.List;
+
+import com.jfoenix.controls.JFXButton;
 
 public class ClientPlatController {
 
@@ -27,6 +31,26 @@ public class ClientPlatController {
 
     @FXML
     private ProgressBar progressBar;
+
+    @FXML
+    private AnchorPane CompteForm;
+
+    @FXML
+    private AnchorPane commandeForm;
+
+    @FXML
+    private AnchorPane menuForm;
+
+    @FXML
+    private JFXButton CommandeBtn;
+
+    @FXML
+    private JFXButton accueilBtn;
+
+    @FXML
+    private JFXButton compteBtn;
+
+
 
     double progress;
 
@@ -93,5 +117,22 @@ public class ClientPlatController {
         progress = progress + 0.01;
         progressBar.setProgress(progress);
     }
+
+    public void switchForm(ActionEvent event) {
+        if (event.getSource() == accueilBtn) {
+            menuForm.setVisible(true);
+            commandeForm.setVisible(false);
+            CompteForm.setVisible(false);
+        } else if (event.getSource() == compteBtn) {
+            menuForm.setVisible(false);
+            commandeForm.setVisible(false);
+            CompteForm.setVisible(true);
+        } else if (event.getSource() == CommandeBtn){
+            menuForm.setVisible(false);
+            commandeForm.setVisible(true);
+            CompteForm.setVisible(false);
+        }
+    } 
+
 
 }

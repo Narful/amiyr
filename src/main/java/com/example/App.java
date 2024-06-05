@@ -18,7 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("historiqueAdmin"), 1550, 790);
+        scene = new Scene(loadFXML("PlatClient"), 1550, 790);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setScene(scene);
         // stage.initStyle(StageStyle.TRANSPARENT);
