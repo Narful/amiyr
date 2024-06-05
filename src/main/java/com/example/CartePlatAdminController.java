@@ -22,8 +22,7 @@ public class CartePlatAdminController {
         this.adminPlatController = adminPlatController;
     }
 
-    public void setPlat(int idPlat, String nomPlat, String categoriePlat, byte[] photo,
-            AdminPlatController adminPlatController) {
+    public void setPlat(int idPlat, String nomPlat, String categoriePlat, byte[] photo, AdminPlatController adminPlatController) {
         this.idPlat = idPlat; // Stocker l'ID du plat
         this.adminPlatController = adminPlatController;
         nomPlatLabel.setText(nomPlat);
