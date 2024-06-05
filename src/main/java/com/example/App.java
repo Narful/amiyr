@@ -12,13 +12,14 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
+
 public class App extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("ModifierPlat"), 1550, 790);
+        scene = new Scene(loadFXML("signin"), 1550, 790);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         stage.setScene(scene);
         // stage.initStyle(StageStyle.TRANSPARENT);

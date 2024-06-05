@@ -194,6 +194,11 @@ public class AdminHistoriqueController {
 
     @FXML
     void toCpt(ActionEvent event) {
+        try {
+            App.setRoot("Users");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -105,7 +105,11 @@ public class AdminPlatController {
 
     @FXML
     void toCpt(ActionEvent event) {
-
+        try {
+            App.setRoot("Users");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="790.0" prefWidth="1550.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ComptesController">
+   <children>
+      <AnchorPane layoutX="245.0" prefHeight="799.0" prefWidth="1367.0" AnchorPane.bottomAnchor="0.1999999999999318" AnchorPane.rightAnchor="-62.200000000000045">
+         <children>
+            <Pane layoutX="-21.0" prefHeight="723.0" prefWidth="943.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-21.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="userTable" focusTraversable="false" layoutX="52.0" layoutY="169.0" prefHeight="454.0" prefWidth="1207.0">
+                    <columns>
+                      <TableColumn fx:id="name" prefWidth="408.7999954223633" text="Nom complet" />
+                      <TableColumn fx:id="email" minWidth="0.0" prefWidth="507.2000732421875" text="Email" />
+                        <TableColumn fx:id="role" prefWidth="291.2001953125" text="Role" />
+                    </columns>
+                  </TableView>
+                  <HBox layoutX="59.0" layoutY="95.0" prefHeight="58.0" prefWidth="131.0" />
+                  <Label layoutX="52.0" layoutY="43.0" prefHeight="67.0" prefWidth="244.0" text="Comptes">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <JFXButton layoutX="1103.0" layoutY="64.0" onAction="#handleAddChef" prefHeight="38.0" prefWidth="156.0" style="-fx-background-color: #780000;" text="Ajouter un cuisinier" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <HBox alignment="CENTER" layoutX="604.0" layoutY="647.0">
+                     <children>
+                        <JFXButton onAction="#SuppRowCpt" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #edf2f4;" text="Supprimer" underline="true" />
+                        <FontAwesomeIcon glyphName="TRASH" size="2em" />
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="1.0" prefHeight="798.0" prefWidth="219.0">
+         <children>
+            <AnchorPane fx:id="menuitems1" layoutX="67.0" layoutY="8.0" prefHeight="790.0" prefWidth="155.0">
+               <children>
+                  <VBox prefHeight="795.0" prefWidth="168.0" spacing="10.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-13.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="38.0" prefWidth="179.0" text="AMIYR">
+                           <font>
+                              <Font name="Arial Bold" size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="6.0" />
+                           </VBox.margin>
+                        </Label>
+                        <VBox prefHeight="262.0" prefWidth="136.0" spacing="6.0">
+                           <children>
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toHome" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Accueil" textFill="#919191">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toPlat" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Plats" textFill="#919191">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toCmd" prefHeight="38.0" prefWidth="154.0" ripplerFill="#edf2f4" text="Commandes" textFill="#919191">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toLiv" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Livraison" textFill="#919191">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="156.0" ripplerFill="#edf2f4" text="Comptes">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toHis" prefHeight="38.0" prefWidth="155.0" ripplerFill="#edf2f4" text="Historique" textFill="#919191">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="-10.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox prefHeight="0.0" prefWidth="139.0" spacing="10.0">
+                           <children>
+                              <JFXButton alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="179.0" ripplerFill="#edf2f4" text="Paramètres" textFill="#919191">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton alignment="BASELINE_LEFT" onAction="#toLogout" prefHeight="38.0" prefWidth="179.0" ripplerFill="#edf2f4" text="Se déconnecter" textFill="#919191">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="353.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="-5.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="7.200000047683716" prefHeight="790.0" prefWidth="70.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="790.0" prefWidth="70.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fx:id="logoAmiyr" fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets left="8.0" top="10.0" />
+                           </VBox.margin>
+                           <image>
+                              <Image url="file:/C:/Users/HP/Documents/GitHub/amiyr/src/main/resources/com/example/img/logo.png" />
+                           </image>
+                        </ImageView>
+                        <VBox alignment="CENTER" spacing="20.0">
+                           <children>
+                              <FontAwesomeIcon fill="#c7c7c7" glyphName="HOME" size="2em">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIcon>
+                              <FontAwesomeIcon fill="#c7c7c7" glyphName="CUTLERY" size="2em" text="">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIcon>
+                              <FontAwesomeIcon fill="#c7c7c7" glyphName="EXCHANGE" size="2em">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIcon>
+                              <FontAwesomeIcon fill="#c7c7c7" glyphName="MAP_MARKER" size="2em" text="">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIcon>
+                              <FontAwesomeIcon glyphName="USERS" size="2em">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIcon>
+                              <FontAwesomeIcon fill="#c7c7c7" glyphName="CLOCK_ALT" layoutX="32.0" layoutY="207.0" size="2.5em" text="">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIcon>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="17.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="77.0" prefWidth="70.0" spacing="15.0">
+                           <children>
+                              <FontAwesomeIcon fill="#c7c7c7" glyphName="GEAR" size="2em">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIcon>
+                              <FontAwesomeIcon fill="#c7c7c7" glyphName="SIGN_OUT" size="2em">
+                                 <VBox.margin>
+                                    <Insets left="5.0" />
+                                 </VBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIcon>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="350.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
