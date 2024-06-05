@@ -23,6 +23,39 @@ public class Plat {
 
    public Plat() {
    }
+   public int getIdPlat() {
+      return idPlat;
+   }
+
+   public String getNom() {
+      return nom;
+   }
+
+   public String getCategorie() {
+      return categorie;
+   }
+
+   public String getDescription() {
+      return description;
+   }
+
+   public byte[] getPhoto() {
+      return photo;
+   }
+
+   public int getQte() {
+      return qte;
+   }
+
+   public float getPrix() {
+      return prix;
+   }
+
+   // Setters
+   public void setIdPlat(int idPlat) {
+      this.idPlat = idPlat;
+   }
+
    public void setNom(String nom) {
       this.nom = nom;
    }
@@ -43,7 +76,7 @@ public class Plat {
       this.qte = qte;
    }
 
-   public void setPrix(Float prix) {
+   public void setPrix(float prix) {
       this.prix = prix;
    }
    public boolean ajouterPlat() {
@@ -80,7 +113,71 @@ public class Plat {
       }
       return categories;
    }
+   public static Plat getPlatById(int id) {
+      Plat plat = null;
+      Connection connection = null;
+      PreparedStatement statement = null;
+      ResultSet resultSet = null;
 
+      try {
+         connection = DatabaseConnection.getConnection();
+         String sql = "SELECT * FROM plat WHERE idPlat = ?";
+         statement = connection.prepareStatement(sql);
+         statement.setInt(1, id);
+         resultSet = statement.executeQuery();
+
+         if (resultSet.next()) {
+            plat = new Plat();
+            plat.setIdPlat(resultSet.getInt("idPlat"));
+            plat.setNom(resultSet.getString("nom"));
+            plat.setCategorie(resultSet.getString("categorie"));
+            plat.setDescription(resultSet.getString("description"));
+            plat.setPhoto(resultSet.getBytes("photo"));
+            plat.setQte(resultSet.getInt("qte"));
+            plat.setPrix(resultSet.getFloat("prix"));
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         // Fermeture des ressources
+         try {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+         } catch (SQLException e) {
+            e.printStackTrace();
+         }
+      }
+
+      return plat;
+   }
+
+   // Méthode pour mettre à jour un plat dans la base de données
+   public boolean updatePlat() {
+      // Requête SQL pour mettre à jour un plat dans la base de données
+      String query = "UPDATE plats SET nom = ?, categorie = ?, description = ?, qte = ?, prix = ?, photo = ? WHERE idPlat = ?";
+
+      try (Connection connection = DatabaseConnection.getConnection();
+           PreparedStatement statement = connection.prepareStatement(query)) {
+         // Définir les valeurs des paramètres dans la requête SQL
+         statement.setString(1, nom);
+         statement.setString(2, categorie);
+         statement.setString(3, description);
+         statement.setInt(4, qte);
+         statement.setFloat(5, prix);
+         statement.setBytes(6, photo);
+         statement.setInt(7, idPlat);
+
+         // Exécuter la requête SQL
+         int rowsUpdated = statement.executeUpdate();
+
+         // Retourner true si au moins une ligne a été mise à jour, sinon false
+         return rowsUpdated > 0;
+      } catch (SQLException e) {
+         e.printStackTrace(); // Afficher les détails de l'erreur
+         return false; // Retourner false en cas d'erreur
+      }
+   }
    public List<Plat> consulterPlats() {
       List<Plat> plats = new ArrayList<>();
       Connection connection = null;
