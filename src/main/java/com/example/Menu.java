@@ -53,7 +53,7 @@ public class Menu {
    public List<Plat> consulterPlatsEnMenu() {
       List<Plat> plats = new ArrayList<>();
       try (Connection connection = DatabaseConnection.getConnection()) {
-         String query = "SELECT idPlat, nom, categorie, photo FROM plat WHERE isMenu = 1";
+         String query = "SELECT idPlat, nom, categorie, photo, prix FROM plat WHERE isMenu = 1";
          PreparedStatement preparedStatement = connection.prepareStatement(query);
          ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -63,6 +63,7 @@ public class Menu {
             plat.nom = resultSet.getString("nom");
             plat.categorie = resultSet.getString("categorie");
             plat.photo = resultSet.getBytes("photo");
+            plat.prix = resultSet.getFloat("prix");
             plats.add(plat);
          }
       } catch (SQLException e) {

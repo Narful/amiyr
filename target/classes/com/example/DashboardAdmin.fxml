@@ -42,6 +42,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+                        <VBox fx:id="VBoxContainer" layoutX="25.0" layoutY="30.0" prefHeight="470.0" prefWidth="309.0" />
                      </children>
                   </Pane>
                   <Button layoutX="586.0" layoutY="99.0" mnemonicParsing="false" onAction="#forMonth" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #003049;" text="Ce mois" textFill="WHITE" />

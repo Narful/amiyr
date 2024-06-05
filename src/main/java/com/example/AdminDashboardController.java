@@ -2,6 +2,7 @@ package com.example;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
@@ -13,17 +14,21 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AdminDashboardController {
@@ -42,6 +47,9 @@ public class AdminDashboardController {
 
     @FXML
     private Pane StackedBarChart;
+
+    @FXML
+    private VBox VBoxContainer;
 
     @FXML
     private ImageView logoAmiyr;
@@ -177,6 +185,45 @@ public class AdminDashboardController {
 
     @FXML
     private void initialize() {
+
+        VBoxContainer.getChildren().clear(); // Clear previous children
+
+        Menu menu = new Menu(); // Assurez-vous d'initialiser Menu correctement si nécessaire
+        List<Plat> plats = menu.consulterPlatsEnMenu();
+
+        // Afficher les plats dans la console pour vérification
+        for (Plat p : plats) {
+            System.out.println("Plat trouvé: " + p.nom + " - " + p.categorie);
+        }
+
+        for (Plat p : plats) {
+            try {
+                // Charger le fichier FXML pour chaque plat
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("petiteCarteMenu.fxml"));
+                Node cartePlatNode = loader.load();
+
+                // Obtenir le contrôleur associé au fichier FXML
+                PetiteCarteMenuController controller = loader.getController();
+                // Passer les données du plat au contrôleur de la carte
+                if (p.prix != null) {
+                    controller.setPlat(p.nom, p.categorie, p.prix);
+                } else {
+                    System.err.println("Le prix du plat " + p.nom + " est nul.");
+                    controller.setPlat(p.nom, p.categorie, 0.0f); // ou toute autre valeur par défaut
+                }
+
+                // Ajouter le node au VBoxContainer
+                VBoxContainer.getChildren().add(cartePlatNode);
+
+                // Ajouter un espaceur entre les cartes
+                Region spacer = new Region();
+                spacer.setPrefWidth(15); // Taille de l'espace
+                VBoxContainer.getChildren().add(spacer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             // Récupérer le mois actuel
             Calendar cal = Calendar.getInstance();
