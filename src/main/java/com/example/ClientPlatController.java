@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -49,6 +50,12 @@ public class ClientPlatController {
 
     @FXML
     private JFXButton compteBtn;
+
+    @FXML
+    private AnchorPane panierForm;
+
+    @FXML
+    private Button panierBtn;
 
 
 
@@ -131,6 +138,12 @@ public class ClientPlatController {
             menuForm.setVisible(false);
             commandeForm.setVisible(true);
             CompteForm.setVisible(false);
+        }else if (event.getSource() == panierBtn){
+            if (panierForm.isVisible()){
+                panierForm.setVisible(false);
+            }else{
+                panierForm.setVisible(true);
+            }
         }
     } 
 

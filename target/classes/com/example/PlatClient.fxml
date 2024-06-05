@@ -20,7 +20,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="790.0" prefWidth="1530.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ClientPlatController">
    <children>
-      <AnchorPane fx:id="menuForm" layoutX="210.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0" visible="false" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="menuForm" layoutX="210.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Pane layoutX="119.2" layoutY="-4.0" prefHeight="795.0" prefWidth="1375.0" style="-fx-background-color: #edf2f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
                <children>
@@ -59,7 +59,7 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutX="881.0" layoutY="217.0" prefHeight="481.0" prefWidth="335.0" style="-fx-background-color: white;">
+                  <AnchorPane fx:id="panierForm" layoutX="881.0" layoutY="217.0" prefHeight="481.0" prefWidth="335.0" style="-fx-background-color: white;" visible="false">
                      <children>
                         <ScrollPane layoutX="10.0" layoutY="78.0" prefHeight="291.0" prefWidth="318.0">
                           <content>
@@ -97,7 +97,7 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <Button layoutX="1206.0" layoutY="685.0" mnemonicParsing="false">
+                  <Button fx:id="panierBtn" layoutX="1206.0" layoutY="685.0" mnemonicParsing="false" onAction="#switchForm">
                      <graphic>
                         <FontAwesomeIcon glyphName="SHOPPING_CART" />
                      </graphic>
@@ -258,7 +258,7 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="CompteForm" layoutX="210.0" layoutY="13.0" prefHeight="791.0" prefWidth="1330.0" visible="false" />
-      <AnchorPane fx:id="commandeForm" layoutX="220.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0">
+      <AnchorPane fx:id="commandeForm" layoutX="220.0" layoutY="23.0" prefHeight="791.0" prefWidth="1330.0" visible="false">
          <children>
             <Label layoutX="107.0" layoutY="72.0" text="Etat de votre commande">
                <font>
