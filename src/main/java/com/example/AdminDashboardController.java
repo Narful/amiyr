@@ -23,10 +23,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.image.ImageView;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -60,6 +57,14 @@ public class AdminDashboardController {
 
     @FXML
     private StackedBarChart<String, Number> stackedBarChart;
+    @FXML
+    private Label RevenutotalMois;
+    @FXML
+    private Label Nombreclientss;
+    @FXML
+    private Label Nombreplatss;
+
+
 
     @FXML
     void toPlat(MouseEvent event) {
@@ -135,8 +140,12 @@ public class AdminDashboardController {
       Connection connection = DatabaseConnection.getConnection();
       populateRevenuPlatChart(connection, dateDebut, dateFin, platChart, false);
       populateStackedBarChart(connection, dateDebut, dateFin, stackedBarChart);
+      afficherRevenuTotal();
+          afficherNombreClients();
+          afficherNombrePlats();
 
-      // Appel de la méthode pour peupler le graphique de revenus mensuels
+
+          // Appel de la méthode pour peupler le graphique de revenus mensuels
       } catch (SQLException e) {
       e.printStackTrace();
       }
@@ -210,7 +219,7 @@ public class AdminDashboardController {
 
           stackedBarChart.getData().addAll(seriesDelivered, seriesCancelled);
           stackedBarChart.setAnimated(false);
-          stackedBarChart.setTitle("Statistiques de commandes par jour");
+          stackedBarChart.setTitle("Statistiques des livraison annuleres et livrées");
       }
 
 
@@ -334,4 +343,127 @@ public class AdminDashboardController {
 
       return result;
       }
+    private void afficherRevenuTotal() {
+        Connection connection = null;
+        double revenuTotal = 0;
+
+        try {
+            // Établir une connexion à la base de données
+            connection = DatabaseConnection.getConnection();
+
+            // Requête SQL pour récupérer les livraisons avec status=1
+            String sqlQuery = "SELECT l.idCommande " +
+                    "FROM livraison l " +
+                    "WHERE l.status = 1";
+
+            // Créer une déclaration
+            try (Statement statement = connection.createStatement()) {
+                // Exécuter la requête
+                ResultSet resultSet = statement.executeQuery(sqlQuery);
+
+                // Pour chaque livraison, récupérer les commandes correspondantes
+                while (resultSet.next()) {
+                    int idCommande = resultSet.getInt("idCommande");
+
+                    // Récupérer le panier associé à la commande
+                    String panierQuery = "SELECT idPanier FROM commande WHERE idCommande = ?";
+                    try (PreparedStatement panierStatement = connection.prepareStatement(panierQuery)) {
+                        panierStatement.setInt(1, idCommande);
+                        ResultSet panierResultSet = panierStatement.executeQuery();
+
+                        if (panierResultSet.next()) {
+                            int idPanier = panierResultSet.getInt("idPanier");
+
+                            // Récupérer les plats associés au panier
+                            String platQuery = "SELECT p.prix FROM panier_plat pp " +
+                                    "INNER JOIN plat p ON pp.idPlat = p.idPlat " +
+                                    "WHERE pp.idPanier = ?";
+                            try (PreparedStatement platStatement = connection.prepareStatement(platQuery)) {
+                                platStatement.setInt(1, idPanier);
+                                ResultSet platResultSet = platStatement.executeQuery();
+
+                                // Calculer le revenu total à partir des prix des plats
+                                while (platResultSet.next()) {
+                                    double prixPlat = platResultSet.getDouble("prix");
+                                    revenuTotal += prixPlat;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Afficher le revenu total dans le Label
+                RevenutotalMois.setText(String.format("%.2f DH", revenuTotal));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Fermer la connexion
+            DatabaseConnection.closeConnection(connection);
+        }
+    }
+
+    private void afficherNombreClients() {
+        Connection connection = null;
+        try {
+            // Établir une connexion à la base de données
+            connection = DatabaseConnection.getConnection();
+
+            // Requête SQL pour compter le nombre d'utilisateurs ayant le rôle "client"
+            String sqlQuery = "SELECT COUNT(*) AS nombre_clients FROM utilisateur WHERE role = 'client'";
+
+            // Créer une déclaration
+            try (Statement statement = connection.createStatement()) {
+                // Exécuter la requête
+                ResultSet resultSet = statement.executeQuery(sqlQuery);
+
+                // Récupérer le nombre total de clients
+                if (resultSet.next()) {
+                    int nombreClients = resultSet.getInt("nombre_clients");
+
+                    // Afficher le nombre total de clients dans le Label
+                    Nombreclients.setText(String.valueOf(nombreClients));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Fermer la connexion
+            DatabaseConnection.closeConnection(connection);
+        }
+    }
+
+
+
+    private void afficherNombrePlats() {
+        Connection connection = null;
+        try {
+            // Établir une connexion à la base de données
+            connection = DatabaseConnection.getConnection();
+
+            // Requête SQL pour récupérer le nombre total de plats
+            String sqlQuery = "SELECT COUNT(idPlat) AS nombre_plats FROM plat";
+
+            // Créer une déclaration
+            try (Statement statement = connection.createStatement()) {
+                // Exécuter la requête
+                ResultSet resultSet = statement.executeQuery(sqlQuery);
+
+                // Récupérer le nombre total de plats
+                if (resultSet.next()) {
+                    int nombrePlats = resultSet.getInt("nombre_plats");
+
+                    // Afficher le nombre total de plats dans le Label
+                    Nombreplats.setText(String.valueOf(nombrePlats));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Fermer la connexion
+            DatabaseConnection.closeConnection(connection);
+        }
+    }
+
+
 }

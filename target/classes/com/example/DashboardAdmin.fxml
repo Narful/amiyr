@@ -87,14 +87,15 @@
                                  </font>
                               </Label>
                               <StackPane>
-                                 <children>
-                                    <Circle fill="#003049" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Label fx:id="Revenutotal" text="NBRFLOAT" textFill="WHITE">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
+                                  <children>
+                                      <Circle fill="#003049" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
+                                      <Label fx:id="RevenutotalMois" text=" " textFill="WHITE">
+                                          <font>
+                                              <Font size="18.0" />
+                                          </font>
+                                      </Label>
+
+                                  </children>
                               </StackPane>
                            </children>
                         </VBox>
@@ -108,7 +109,7 @@
                               <StackPane>
                                  <children>
                                     <Circle fill="#669bbc" radius="80.0" stroke="#669bbc" strokeType="INSIDE" />
-                                    <Label fx:id="Nombreclients" text="NBRINTC" textFill="WHITE">
+                                    <Label fx:id="Nombreclients" text=" " textFill="WHITE">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -127,7 +128,7 @@
                               <StackPane>
                                  <children>
                                     <Circle fill="#780000" radius="80.0" stroke="#780000" strokeType="INSIDE" />
-                                    <Label fx:id="Nombreplats" text="NBRINTP" textFill="WHITE">
+                                    <Label fx:id="Nombreplats" text=" " textFill="WHITE">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
